@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crée ton Club{% endblock %}
+
+{% block body %}
+    <h1>Crée ton Club</h1>
+
+    {{ form_start(clubForm) }}
+        {{ form_widget(clubForm) }}
+        <button class="btn btn-success">Save Changes</button>
+    {{ form_end(clubForm) }}
+
+{% endblock %}

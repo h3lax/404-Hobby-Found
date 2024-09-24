@@ -15,7 +15,11 @@ return [
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/club/add' => [[['_route' => 'clubAdd', '_controller' => 'App\\Controller\\ClubsController::addClub'], null, null, null, false, false, null]],
-        '/' => [[['_route' => 'accueil', '_controller' => 'App\\Controller\\LandingPageController::index'], null, null, null, false, false, null]],
+        '/event' => [[['_route' => 'app_event', '_controller' => 'App\\Controller\\EventController::index'], null, null, null, false, false, null]],
+        '/' => [
+            [['_route' => 'accueil', '_controller' => 'App\\Controller\\LandingPageController::index'], null, null, null, false, false, null],
+            [['_route' => 'index', '_controller' => 'App\\Controller\\LandingPageController::landingPage'], null, null, null, false, false, null],
+        ],
         '/club' => [[['_route' => 'app_my_clubs', '_controller' => 'App\\Controller\\MyClubsController::index'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
@@ -35,6 +39,10 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
+                .'|/club/(?'
+                    .'|modify/([^/]++)(*:193)'
+                    .'|delete/([^/]++)(*:216)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -44,8 +52,10 @@ return [
         116 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
-        159 => [
-            [['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null],
+        159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
+        193 => [[['_route' => 'clubModify', '_controller' => 'App\\Controller\\ClubsController::modifyClub'], ['id'], null, null, false, true, null]],
+        216 => [
+            [['_route' => 'clubDelete', '_controller' => 'App\\Controller\\ClubsController::deleteClub'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

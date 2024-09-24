@@ -68,3 +68,12 @@ f355f3,127.0.0.1,GET,http://404-hobby-found.test/,1727186348,,200
 28a3fe,::1,GET,http://localhost/404-Hobby-Found/public/,1727186381,,200
 74a95d,127.0.0.1,GET,http://404-hobby-found.test/,1727186389,,200
 642ddf,127.0.0.1,GET,http://404-hobby-found.test/,1727186537,,200
+2ae3b8,127.0.0.1,GET,http://404-hobby-found.test/,1727186852,,200
+fa6c46,127.0.0.1,GET,http://404-hobby-found.test/favicon.ico,1727187195,f1a4e7,404
+f1a4e7,127.0.0.1,GET,http://404-hobby-found.test/favicon.ico,1727187195,,404
+43b9ea,127.0.0.1,GET,http://404-hobby-found.test/club/modify/1,1727187539,,200
+df8ff6,127.0.0.1,GET,http://404-hobby-found.test/club/modify/1,1727187619,,200
+5ed58b,127.0.0.1,GET,http://404-hobby-found.test/club/delete/1,1727188225,28af99,500
+28af99,127.0.0.1,GET,http://404-hobby-found.test/club/delete/1,1727188225,,500
+d1bd45,127.0.0.1,GET,http://404-hobby-found.test/club/delete/13,1727188420,,302
+3dbcff,127.0.0.1,GET,http://404-hobby-found.test/,1727188420,,200

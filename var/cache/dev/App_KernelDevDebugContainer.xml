@@ -345,6 +345,13 @@
         <argument type="service" id=".service_locator.jIxfAsi.App\Controller\ClubsController"/>
       </call>
     </service>
+    <service id="App\Controller\EventController" class="App\Controller\EventController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jIxfAsi.App\Controller\EventController"/>
+      </call>
+    </service>
     <service id="App\Controller\LandingPageController" class="App\Controller\LandingPageController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -373,6 +380,9 @@
       <argument type="service" id="security.user_password_hasher"/>
     </service>
     <service id="App\Form\ClubFormType" class="App\Form\ClubFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\EventFormType" class="App\Form\EventFormType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Repository\ClubRepository" class="App\Repository\ClubRepository" autowire="true" autoconfigure="true">
@@ -1196,6 +1206,7 @@
       </argument>
       <argument type="collection">
         <argument>App\Form\ClubFormType</argument>
+        <argument>App\Form\EventFormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -3105,7 +3116,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.5oSbyDD"/>
+      <argument type="service" id=".service_locator.Rjf4W_1"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -5924,6 +5935,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ClubsController" class="App\Controller\ClubsController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ClubsController" class="App\Controller\ClubsController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ClubsController" class="App\Controller\ClubsController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\EventController" class="App\Controller\EventController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\EventController" class="App\Controller\EventController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\EventController" class="App\Controller\EventController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\LandingPageController" class="App\Controller\LandingPageController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\LandingPageController" class="App\Controller\LandingPageController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\LandingPageController" class="App\Controller\LandingPageController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -5940,6 +5954,8 @@
     <service id=".abstract.instanceof.App\DataFixtures\UserFixtures" class="App\DataFixtures\UserFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ClubFormType" class="App\Form\ClubFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ClubFormType" class="App\Form\ClubFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\EventFormType" class="App\Form\EventFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\EventFormType" class="App\Form\EventFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ClubRepository" class="App\Repository\ClubRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ClubRepository" class="App\Repository\ClubRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\EventRepository" class="App\Repository\EventRepository" autowire="true" abstract="true"/>
@@ -6325,22 +6341,34 @@
         <argument key="security" type="service_closure" id="security.helper"/>
       </argument>
     </service>
+    <service id=".service_locator.QPWB.pQ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="clubRepository" type="service_closure" id="App\Repository\ClubRepository"/>
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="security" type="service_closure" id="security.helper"/>
+      </argument>
+    </service>
     <service id=".service_locator.Ou2uoCG" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="clubRepository" type="service_closure" id="App\Repository\ClubRepository"/>
       </argument>
     </service>
-    <service id=".service_locator..EKdA8e" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.Zt1baOP" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\ClubsController::addClub" type="service_closure" id=".service_locator.nXHEl5W"/>
+        <argument key="App\Controller\ClubsController::deleteClub" type="service_closure" id=".service_locator.QPWB.pQ"/>
+        <argument key="App\Controller\ClubsController::modifyClub" type="service_closure" id=".service_locator.QPWB.pQ"/>
         <argument key="App\Controller\LandingPageController::index" type="service_closure" id=".service_locator.Ou2uoCG"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="App\Controller\ClubsController:addClub" type="service_closure" id=".service_locator.nXHEl5W"/>
+        <argument key="App\Controller\ClubsController:deleteClub" type="service_closure" id=".service_locator.QPWB.pQ"/>
+        <argument key="App\Controller\ClubsController:modifyClub" type="service_closure" id=".service_locator.QPWB.pQ"/>
         <argument key="App\Controller\LandingPageController:index" type="service_closure" id=".service_locator.Ou2uoCG"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
@@ -6510,10 +6538,11 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.5oSbyDD" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.Rjf4W_1" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\ClubFormType" type="service_closure" id="App\Form\ClubFormType"/>
+        <argument key="App\Form\EventFormType" type="service_closure" id="App\Form\EventFormType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service_closure" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ColorType" type="service_closure" id="form.type.color"/>
@@ -6875,6 +6904,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.jIxfAsi" method="withContext"/>
     </service>
+    <service id=".service_locator.jIxfAsi.App\Controller\EventController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\EventController"/>
+      <argument>App\Controller\EventController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jIxfAsi" method="withContext"/>
+    </service>
     <service id=".service_locator.jIxfAsi.App\Controller\LandingPageController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\LandingPageController"/>
       <argument>App\Controller\LandingPageController</argument>
@@ -7141,12 +7176,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator..EKdA8e"/>
+      <argument type="service" id=".service_locator.Zt1baOP"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator..EKdA8e"/>
+      <argument type="service" id=".service_locator.Zt1baOP"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8179,7 +8214,7 @@
     <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface" alias="webpack_encore.entrypoint_lookup[_default]"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator..EKdA8e"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.Zt1baOP"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -8201,9 +8236,9 @@
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.XDGmiR3" alias=".1_ServiceLocator~mHvGltd"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
-    <service id=".service_locator.lpFkMBt" alias=".service_locator..EKdA8e"/>
+    <service id=".service_locator.2ZiNab0" alias=".service_locator.Zt1baOP"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
-    <service id=".service_locator.loPjroM" alias=".service_locator.5oSbyDD"/>
+    <service id=".service_locator.Q8bhtmh" alias=".service_locator.Rjf4W_1"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator._eRAkJb" alias=".service_locator.jIxfAsi"/>
@@ -8252,6 +8287,7 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.uo5c0SP" alias=".service_locator.xUrKPVU"/>
     <service id=".service_locator.0rJrAbx" alias=".service_locator.nXHEl5W"/>
+    <service id=".service_locator.Vwva2aP" alias=".service_locator.QPWB.pQ"/>
     <service id=".service_locator.pYkIT4V" alias=".service_locator.Ou2uoCG"/>
     <service id=".service_locator.eAaUVIw" alias=".service_locator.jIxfAsi"/>
     <service id=".service_locator.u6DWx23" alias=".service_locator.cXsfP3P"/>

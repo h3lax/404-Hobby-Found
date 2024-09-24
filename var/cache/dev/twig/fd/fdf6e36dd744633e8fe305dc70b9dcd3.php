@@ -108,14 +108,15 @@ class __TwigTemplate_a7f0cb98191fa9616f445f363e1287bb extends Template
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["controller_name"]) || array_key_exists("controller_name", $context) ? $context["controller_name"] : (function () { throw new RuntimeError('Variable "controller_name" does not exist.', 12, $this->source); })()), "html", null, true);
         yield "! ✅</h1>
 
+
     This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href=\"";
-        // line 16
+        // line 17
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\CodeExtension']->getFileLink("C:/laragon/www/404-Hobby-Found/src/Controller/MyClubsController.php", 0), "html", null, true);
         yield "\">src/Controller/MyClubsController.php</a></code></li>
         <li>Your template at <code><a href=\"";
-        // line 17
+        // line 18
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\CodeExtension']->getFileLink("C:/laragon/www/404-Hobby-Found/templates/my_clubs/index.html.twig", 0), "html", null, true);
         yield "\">templates/my_clubs/index.html.twig</a></code></li>
     </ul>
@@ -151,7 +152,7 @@ class __TwigTemplate_a7f0cb98191fa9616f445f363e1287bb extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  119 => 17,  115 => 16,  108 => 12,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  120 => 18,  116 => 17,  108 => 12,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -168,6 +169,7 @@ class __TwigTemplate_a7f0cb98191fa9616f445f363e1287bb extends Template
 
 <div class=\"example-wrapper\">
     <h1>Hello {{ controller_name }}! ✅</h1>
+
 
     This friendly message is coming from:
     <ul>

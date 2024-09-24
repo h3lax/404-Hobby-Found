@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Club;
-use App\Form\ClubFormType;
-use App\Repository\ClubRepository;
+use App\Entity\Event;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
-class ClubsController extends AbstractController
+class EventController extends AbstractController
 {
     #[Route('/club/add', name: 'clubAdd')]
     public function addClub(
@@ -25,7 +23,9 @@ class ClubsController extends AbstractController
         //    return $this->redirectToRoute('dashboard');
         //}
 
-        $club = new Club();
+        $event = new Event();
+
+        /*
         $form = $this->createForm(ClubFormType::class,$club);
         $form->handleRequest($request);
 
@@ -104,5 +104,5 @@ class ClubsController extends AbstractController
         return $this->redirectToRoute('accueil');
 
     }
-    
+    */
 }
