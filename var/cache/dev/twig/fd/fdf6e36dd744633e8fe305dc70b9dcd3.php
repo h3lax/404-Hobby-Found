@@ -176,6 +176,6 @@ class __TwigTemplate_a7f0cb98191fa9616f445f363e1287bb extends Template
     </ul>
 </div>
 {% endblock %}
-", "my_clubs/index.html.twig", "C:\\laragon\\www\\404-Hobby-Found\\templates\\my_clubs\\index.html.twig");
+", "my_clubs/index.html.twig", "D:\\laragon\\www\\404-Hobby-Found\\templates\\my_clubs\\index.html.twig");
     }
 }

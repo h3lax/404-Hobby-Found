@@ -2,17 +2,27 @@
 
 namespace App\Controller;
 
+use App\Repository\ClubRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LandingPageController extends AbstractController
 {
-    #[Route('/', name: 'app_landing_page')]
-    public function index(): Response
+    #[Route('/', name: 'accueil')]
+    public function index(
+        ClubRepository $clubRepository,
+
+    ): Response
     {
-        return $this->render('landing_page/index.html.twig', [
-            'controller_name' => 'LandingPageController',
+
+        $clubs = $clubRepository->findAll();
+
+        
+        return $this->render('accueil/index.html.twig',[
+            'clubs'=>$clubs,
         ]);
     }
+
+
 }
