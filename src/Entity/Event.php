@@ -22,8 +22,8 @@ class Event
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $date = null;
+    #[ORM\Column(type: 'datetime')]
+    private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createAt = null;
@@ -64,15 +64,15 @@ class Event
         return $this;
     }
 
-    public function getDate(): ?string
+    public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDate(string $date): static
+    public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
-
+    
         return $this;
     }
 
