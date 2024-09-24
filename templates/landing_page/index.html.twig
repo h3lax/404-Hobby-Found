@@ -1,61 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Page</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Make the body take up the full height of the viewport */
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
+{% extends 'base.html.twig' %}
 
-        /* Flex container to push footer to the bottom */
-        .wrapper {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+{% block title %}Hello LandingPageController!{% endblock %}
 
-        /* Main content takes up all available space */
-        .content {
-            flex: 1;
-        }
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
 
-        /* Footer should always be at the bottom */
-        footer {
-            background-color: #343a40;
-            color: white;
-        }
-    </style>
-</head>
-<body>
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    <div class="wrapper">
-        <!-- Header Section -->
-        <header class="bg-primary text-white text-center py-3">
-            <div class="container">
-                <h1>My Simple Page</h1>
-                <p class="lead">This is the header section</p>
-            </div>
-        </header>
-
-        <!-- Body Section -->
-        <main class="content container py-5">
-            <h2>Welcome to the Body Section</h2>
-            <p>This is the body of the page where the main content will go.</p>
-        </main>
-
-        <!-- Footer Section -->
-        <footer class="text-center py-3">
-            <div class="container">
-                <p>&copy; 2024 My Simple Page. All rights reserved.</p>
-            </div>
-        </footer>
-    </div>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/laragon/www/404-Hobby-Found/src/Controller/LandingPageController.php'|file_link(0) }}">src/Controller/LandingPageController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/laragon/www/404-Hobby-Found/templates/landing_page/index.html.twig'|file_link(0) }}">templates/landing_page/index.html.twig</a></code></li>
+    </ul>
+</div>
+{% endblock %}
