@@ -2,7 +2,6 @@
 html, body {
     height: 100%;                /* Full height */
     margin: 0;                  /* Remove default margin */
-    background-color: lightgray; /* Background color */
     font-family: Arial, sans-serif; /* Font family */
     display: flex;               /* Use flexbox */
     flex-direction: column;      /* Stack children vertically */
@@ -92,4 +91,23 @@ h1 {
 
 .form-check-input {
     margin-top: 0.3rem; /* Align checkbox */
+}
+
+.profile-pic {
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    border-radius: 50%; /* Makes it circular */
+    margin-left: 15px; /* Space between nav items and profile picture */
+    object-fit: cover; /* Ensures the image covers the element without distortion */
+}
+
+.modal-footer {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between buttons */
+    align-items: center; /* Align items vertically */
+}
+
+.modal-footer .btn {
+    width: auto; /* Make buttons take their natural width */
+    margin-left: 10px; /* Add space between buttons */
 }

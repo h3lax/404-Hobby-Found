@@ -24,6 +24,28 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $form->get('profile_img')->getData();
+
+            if ($file) {
+                // Generate a unique file name
+                $filename = md5(uniqid()).'.'.$file->guessExtension();
+                
+                try {
+                    // Move the file to the directory where images are stored
+                    $file->move(
+                        $this->getParameter('uploads_directory'),
+                        $filename
+                    );
+                    // Set the profile image path to the User entity
+                    $user->setProfileImg('uploads/' . $filename);
+                } catch (FileException $e) {
+                    // Handle the exception (e.g., log the error, add a flash message)
+                    $this->addFlash('error', 'File upload failed: ' . $e->getMessage());
+                    return $this->redirectToRoute('app_register'); // Redirect or handle as necessary
+                }
+            }
+
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
