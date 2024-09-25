@@ -1,21 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MyClubsController!{% endblock %}
+{% block title %}My Clubs{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<main role="main">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">My Joined Clubs</h1>
+    </div>
+  </section>
 
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        {% for club in clubs %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <p class="card-text">{{ club.name }} (ID: {{ club.id }})</p>
+              <p class="card-text">Joined by User ID: {{ app.user.id }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                </div>
+                <small class="text-muted">{{ club.users.count() }} Members</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% else %}
+        <div class="col-12">
+          <p>You haven't joined any clubs yet.</p>
+        </div>
+        {% endfor %}
+      </div>    
+    </div>
+  </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/404-Hobby-Found/src/Controller/MyClubsController.php'|file_link(0) }}">src/Controller/MyClubsController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/404-Hobby-Found/templates/my_clubs/index.html.twig'|file_link(0) }}">templates/my_clubs/index.html.twig</a></code></li>
-    </ul>
-</div>
+</main>
 {% endblock %}
