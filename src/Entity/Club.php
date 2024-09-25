@@ -25,10 +25,10 @@ class Club
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $clubImg = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $lastModifiedAt = null;
 
     #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'club')]

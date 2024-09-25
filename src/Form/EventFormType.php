@@ -5,10 +5,12 @@ namespace App\Form;
 use App\Entity\Club;
 use App\Entity\Event;
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class EventFormType extends AbstractType
 {
@@ -17,7 +19,11 @@ class EventFormType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('date')
+            ->add('date', DateTime::class, [
+                'widget' => 'single_text',
+                'html5' => true,  // Utilise le sélecteur HTML5 natif des navigateurs
+                'attr' => ['class' => 'js-datepicker'],  // Optionnel: Classe pour customisation JS si nécessaire
+            ])
             ->add('club', EntityType::class, [
                 'class' => Club::class,
                 'choices' => $options['clubs'],  // Utilisation des clubs filtrés passés en option

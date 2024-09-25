@@ -1,28 +1,44 @@
-###> symfony/framework-bundle ###
+# Ignore environment files
+/.env
 /.env.local
-/.env.local.php
+/.env.test.local
+/.env.prod.local
 /.env.*.local
+/.env.local.php
+
+# Ignore Secrets
 /config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
-/var/
+
+# Ignore cache, logs, sessions
+/var/cache/
+/var/logs/
+/var/sessions/
+/var/tmp/
+/var/test/
+
+# Ignore compiled code and dependencies
 /vendor/
-.env
 node_modules/
-###< symfony/framework-bundle ###
 
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-###< phpunit/phpunit ###
-
-###> symfony/phpunit-bridge ###
-.phpunit.result.cache
-/phpunit.xml
-###< symfony/phpunit-bridge ###
-
-###> symfony/webpack-encore-bundle ###
-/node_modules/
+# Ignore built assets
 /public/build/
-npm-debug.log
-yarn-error.log
-###< symfony/webpack-encore-bundle ###
+/public/bundles/
+/public/uploads/  # Optional, depends on how you handle file uploads
+
+# Ignore test files and results
+/phpunit.result.cache
+/.phpunit.result.cache
+/phpunit.xml
+
+# Ignore editor-specific files (if applicable)
+*.swp
+*.idea/
+/.vscode/
+
+# Ignore lock files and logs
+npm-debug.log*
+yarn-error.log*
+
+# Ignore miscellaneous OS files
+.DS_Store
+Thumbs.db
