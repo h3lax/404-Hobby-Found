@@ -4,7 +4,7 @@
 
 {% block body %}
 <main role="main">
-  <div class="album py-5 bg-light">
+  <div class="album py-5">
     <div class="container">
       <div class="row">
         {% for club in clubs %}
@@ -58,25 +58,27 @@
   <!-- Join Club Confirmation Modal -->
   <div class="modal fade" id="joinClubModal" tabindex="-1" role="dialog" aria-labelledby="joinClubModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="joinClubModalLabel">Join Club Confirmation</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="joinClubModalLabel">Join Club Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="joinClubMessage"></p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <form id="confirmJoinForm" action="" method="post">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+            </form>
         </div>
-        <div class="modal-body">
-          <p id="joinClubMessage"></p>
+
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <form id="confirmJoinForm" action="" method="post">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-          </form>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
+
 
 </main>
 

@@ -30,6 +30,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_my_clubs') }}">Mes Clubs</a>
                         </li>
+                        <!-- Display user profile picture without link -->
+                            <li class="nav-item">
+                                <img src="{{ app.user.getProfileImg() ? asset('uploads/' ~ app.user.getProfileImg()) : asset('default/default.jpg') }}" 
+                                    alt="Profile Picture" class="rounded-circle" width="40" height="40">
+                            </li>   
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_login') }}">Login</a>
@@ -43,25 +48,8 @@
         </nav>
     </header>
 
-    <div class="content">  <!-- Added a content div -->
+    <div class="content">
         {% block body %}
-
-        {% if app.flashes('success') %}
-            <div class="alert alert-success">
-                {% for message in app.flashes('success') %}
-                    {{ message }}
-                {% endfor %}
-            </div>
-        {% endif %}
-
-        {% if app.flashes('error') %}
-            <div class="alert alert-danger">
-                {% for message in app.flashes('error') %}
-                    {{ message }}
-                {% endfor %}
-            </div>
-        {% endif %}
-
         {% endblock %}
     </div>
 
