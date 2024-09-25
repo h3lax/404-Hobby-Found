@@ -21,13 +21,24 @@ class EventFormType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => true,  // Utilise le sélecteur HTML5 natif des navigateurs
                 'attr' => ['class' => 'js-datepicker'],  // Optionnel: Classe pour customisation JS si nécessaire
-            ])
-            ->add('club', EntityType::class, [
-                'class' => Club::class,
-                'choices' => $options['clubs'],  // Utilisation des clubs filtrés passés en option
-                'choice_label' => 'name',
-                'placeholder' => 'Choose a club',
             ]);
+            if ($options['is_editing']) {
+                // When editing, make the club field read-only and set its value
+                $builder->add('club', EntityType::class, [
+                    'class' => Club::class,
+                    'choices' => $options['clubs'],
+                    'choice_label' => 'name',
+                    'disabled' => true, // Make the field read-only
+                ]);
+            } else {
+                // When creating, allow selection of club
+                $builder->add('club', EntityType::class, [
+                    'class' => Club::class,
+                    'choices' => $options['clubs'],
+                    'choice_label' => 'name',
+                    'placeholder' => 'Choose a club',
+                ]);
+            }
         ;
     }
 
@@ -36,6 +47,11 @@ class EventFormType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Event::class,
             'clubs' => [],  // Define 'clubs' option with a default empty array
+            'is_editing' => false, // Default value for is_editing
         ]);
+
+        // Allow is_editing option
+        $resolver->setAllowedTypes('is_editing', 'bool');
+    
     }
 }
