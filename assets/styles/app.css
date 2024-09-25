@@ -49,8 +49,8 @@ footer {
 }
 
 .logo-circle {
-    width: 50px;  /* Adjust size as needed */
-    height: 50px; /* Adjust size as needed */
+    width: 40px;  /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
     border-radius: 50%; /* Makes the image circular */
     object-fit: cover; /* Ensures the image covers the circular area */
     border: 2px solid #000; /* Optional: adds a border */

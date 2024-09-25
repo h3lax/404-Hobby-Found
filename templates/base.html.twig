@@ -7,11 +7,6 @@
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <style>
-            .navbar .text-center h1 {
-                color: black;  /* Set text color to black */
-            }
-        </style>
     {% endblock %}
 </head>
 <body>
@@ -48,25 +43,27 @@
         </nav>
     </header>
 
-    {% block body %}
+    <div class="content">  <!-- Added a content div -->
+        {% block body %}
 
-    {% if app.flashes('success') %}
-        <div class="alert alert-success">
-            {% for message in app.flashes('success') %}
-                {{ message }}
-            {% endfor %}
-        </div>
-    {% endif %}
+        {% if app.flashes('success') %}
+            <div class="alert alert-success">
+                {% for message in app.flashes('success') %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
 
-    {% if app.flashes('error') %}
-        <div class="alert alert-danger">
-            {% for message in app.flashes('error') %}
-                {{ message }}
-            {% endfor %}
-        </div>
-    {% endif %}
+        {% if app.flashes('error') %}
+            <div class="alert alert-danger">
+                {% for message in app.flashes('error') %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
 
-    {% endblock %}
+        {% endblock %}
+    </div>
 
     <footer>
         <p>&copy; {{ "now"|date("Y") }} 404 Hobby Found. All rights reserved.</p>
