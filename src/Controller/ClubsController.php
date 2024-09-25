@@ -104,5 +104,30 @@ class ClubsController extends AbstractController
         return $this->redirectToRoute('accueil');
 
     }
-    
+
+    #[Route('/club/join/{id}', name: 'clubJoin')]
+    public function joinClub(
+        Request $request,
+        ClubRepository $clubRepository,
+        EntityManagerInterface $em,
+        $id,
+        Security $security): Response
+    {
+
+        $user = $this->getUser(); // Récupérer l'utilisateur connecté
+
+        if ($user) {
+            $club = $clubRepository->find($id);
+
+            if (!$club) {
+                throw $this->createNotFoundException('Club not found');
+                return $this->redirectToRoute('accueil');
+            }
+
+            $club->addUser($user);
+            $em->persist($club);
+            $em->flush();
+        }
+        return $this->redirectToRoute('accueil');
+    }
 }

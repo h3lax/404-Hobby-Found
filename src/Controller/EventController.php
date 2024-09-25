@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\Form\EventFormType;
 use App\Repository\ClubRepository;
+use App\Repository\EventRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,6 +40,8 @@ class EventController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $event->setCreateAt(new \DateTime());
+            $event->setLastModifiedAt(new \DateTime());
             $em->persist($event);
             $em->flush();
 
@@ -50,11 +53,11 @@ class EventController extends AbstractController
         ]);
 
     }
-/*
-    #[Route('/club/modify/{id}', name: 'clubModify')]
-    public function modifyClub(
+
+    #[Route('/event/modify/{id}', name: 'eventModify')]
+    public function modifyEvent(
         Request $request,
-        ClubRepository $clubRepository,
+        EventRepository $eventRepository,
         EntityManagerInterface $em,
         $id,
         Security $security): Response
@@ -64,28 +67,28 @@ class EventController extends AbstractController
         //    return $this->redirectToRoute('dashboard');
         //}
 
-        $club = $clubRepository->find($id);
+        $event = $eventRepository->find($id);
 
-        if (!$club) {
-            throw $this->createNotFoundException('Club not found');
+        if (!$event) {
+            throw $this->createNotFoundException('Event not found');
         }
 
-        $form = $this->createForm(ClubFormType::class,$club);
+        $form = $this->createForm(EventFormType::class,$event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $club->setLastModifiedAt(new \DateTimeImmutable());
-            $em->persist($club);
+            $event->setLastModifiedAt(new \DateTime());
+            $em->persist($event);
             $em->flush();
 
             return $this->redirectToRoute('accueil'); // Change this to your desired route
         }
 
-        return $this->render('clubs/modifyClub.html.twig', [
+        return $this->render('event/modifyEvent.html.twig', [
             'clubForm' => $form->createView(),
         ]);
     }
-
+/*
     #[Route('/club/delete/{id}', name: 'clubDelete')]
     public function deleteClub(
         Request $request,
