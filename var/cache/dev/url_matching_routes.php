@@ -14,7 +14,8 @@ return [
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
-        '/club/add' => [[['_route' => 'clubAdd', '_controller' => 'App\\Controller\\EventController::addClub'], null, null, null, false, false, null]],
+        '/club/add' => [[['_route' => 'clubAdd', '_controller' => 'App\\Controller\\ClubsController::addClub'], null, null, null, false, false, null]],
+        '/event/add' => [[['_route' => 'eventAdd', '_controller' => 'App\\Controller\\EventController::addEvent'], null, null, null, false, false, null]],
         '/' => [
             [['_route' => 'accueil', '_controller' => 'App\\Controller\\LandingPageController::index'], null, null, null, false, false, null],
             [['_route' => 'index', '_controller' => 'App\\Controller\\LandingPageController::landingPage'], null, null, null, false, false, null],

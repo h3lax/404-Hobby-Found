@@ -78,3 +78,8 @@ df8ff6,127.0.0.1,GET,http://404-hobby-found.test/club/modify/1,1727187619,,200
 d1bd45,127.0.0.1,GET,http://404-hobby-found.test/club/delete/13,1727188420,,302
 3dbcff,127.0.0.1,GET,http://404-hobby-found.test/,1727188420,,200
 f0eaa9,127.0.0.1,GET,http://404-hobby-found.test/,1727248714,,200
+49c762,127.0.0.1,GET,http://404-hobby-found.test/event/add,1727253788,de814d,500
+de814d,127.0.0.1,GET,http://404-hobby-found.test/event/add,1727253788,,500
+0d02ef,127.0.0.1,GET,http://404-hobby-found.test/event/add,1727253932,b4fe5f,500
+b4fe5f,127.0.0.1,GET,http://404-hobby-found.test/event/add,1727253932,,500
+cd2f0b,127.0.0.1,GET,http://404-hobby-found.test/event/add,1727254192,,200

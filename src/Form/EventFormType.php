@@ -20,16 +20,9 @@ class EventFormType extends AbstractType
             ->add('date')
             ->add('club', EntityType::class, [
                 'class' => Club::class,
+                'choices' => $options['clubs'],  // Utilisation des clubs filtrés passés en option
                 'choice_label' => 'name',
                 'placeholder' => 'Choose a club',
-
-                // Utilisation d'un query_builder personnalisé
-                'query_builder' => function (UserRepository $er) use ($user) {
-                    // Requête personnalisée pour récupérer uniquement les clubs de l'utilisateur
-                    return $er->createQueryBuilder('c')
-                              ->where('c.user = :user')
-                              ->setParameter('user', $user);
-                }
             ]);
         ;
     }
@@ -38,6 +31,7 @@ class EventFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Event::class,
+            'clubs' => [],  // Define 'clubs' option with a default empty array
         ]);
     }
 }

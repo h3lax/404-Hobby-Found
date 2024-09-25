@@ -6364,13 +6364,13 @@
         <argument key="clubRepository" type="service_closure" id="App\Repository\ClubRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.11hnPSQ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.atpQFzd" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\ClubsController::addClub" type="service_closure" id=".service_locator.nXHEl5W"/>
         <argument key="App\Controller\ClubsController::deleteClub" type="service_closure" id=".service_locator.QPWB.pQ"/>
         <argument key="App\Controller\ClubsController::modifyClub" type="service_closure" id=".service_locator.QPWB.pQ"/>
-        <argument key="App\Controller\EventController::addClub" type="service_closure" id=".service_locator.nMkrV_7"/>
+        <argument key="App\Controller\EventController::addEvent" type="service_closure" id=".service_locator.nMkrV_7"/>
         <argument key="App\Controller\LandingPageController::index" type="service_closure" id=".service_locator.Ou2uoCG"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
@@ -6379,7 +6379,7 @@
         <argument key="App\Controller\ClubsController:addClub" type="service_closure" id=".service_locator.nXHEl5W"/>
         <argument key="App\Controller\ClubsController:deleteClub" type="service_closure" id=".service_locator.QPWB.pQ"/>
         <argument key="App\Controller\ClubsController:modifyClub" type="service_closure" id=".service_locator.QPWB.pQ"/>
-        <argument key="App\Controller\EventController:addClub" type="service_closure" id=".service_locator.nMkrV_7"/>
+        <argument key="App\Controller\EventController:addEvent" type="service_closure" id=".service_locator.nMkrV_7"/>
         <argument key="App\Controller\LandingPageController:index" type="service_closure" id=".service_locator.Ou2uoCG"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
@@ -7187,12 +7187,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.11hnPSQ"/>
+      <argument type="service" id=".service_locator.atpQFzd"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.11hnPSQ"/>
+      <argument type="service" id=".service_locator.atpQFzd"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8225,7 +8225,7 @@
     <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface" alias="webpack_encore.entrypoint_lookup[_default]"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.11hnPSQ"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.atpQFzd"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -8248,7 +8248,7 @@
     <service id=".service_locator.XDGmiR3" alias=".1_ServiceLocator~mHvGltd"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
     <service id=".service_locator.mmEl6Rz" alias=".service_locator.nMkrV_7"/>
-    <service id=".service_locator.zN6vkjH" alias=".service_locator.11hnPSQ"/>
+    <service id=".service_locator.RNUT.C9" alias=".service_locator.atpQFzd"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.Q8bhtmh" alias=".service_locator.Rjf4W_1"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
