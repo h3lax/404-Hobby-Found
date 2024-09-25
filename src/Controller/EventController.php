@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\User;
 use App\Form\EventFormType;
 use App\Repository\ClubRepository;
 use App\Repository\EventRepository;
@@ -30,27 +31,32 @@ class EventController extends AbstractController
         //}
 
         $event = new Event();
-        $user = $userRepository->find(1);  //récupérer le user UNE FOIS QUON A LA CONNEXION
-        $clubs = $user->getClubs();
 
-        $form = $this->createForm(EventFormType::class, $event, [
-            'clubs' => $clubs
-        ]);
+        $user = $this->getUser(); // Récupérer l'utilisateur connecté
 
-        $form->handleRequest($request);
+        if ($user instanceof User) {
+            $clubs = $user->getClubs();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $event->setCreateAt(new \DateTime());
-            $event->setLastModifiedAt(new \DateTime());
-            $em->persist($event);
-            $em->flush();
+            $form = $this->createForm(EventFormType::class, $event, [
+            'clubs' => $clubs,
+            'is_editing' => false, // Setting is_editing to false for creation
+             ]);
 
-            return $this->redirectToRoute('accueil');
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $event->setCreateAt(new \DateTime());
+                $event->setLastModifiedAt(new \DateTime());
+                $em->persist($event);
+                $em->flush();
+                return $this->redirectToRoute('accueil');
+            }
+            return $this->render('event/new.html.twig', [
+                'eventForm' => $form->createView(),
+            ]);
+            
         }
-
-        return $this->render('event/new.html.twig', [
-            'eventForm' => $form->createView(),
-        ]);
+        return $this->redirectToRoute('accueil');
 
     }
 
@@ -66,33 +72,38 @@ class EventController extends AbstractController
         //if (!$security->isGranted('ROLE_ADMIN')) {
         //    return $this->redirectToRoute('dashboard');
         //}
+        $user = $this->getUser();
+        if ($user instanceof User) {
 
-        $event = $eventRepository->find($id);
+            $event = $eventRepository->find($id);
+            $clubs = $user->getClubs();
 
-        if (!$event) {
-            throw $this->createNotFoundException('Event not found');
+            $form = $this->createForm(EventFormType::class, $event, [
+            'clubs' => $clubs,
+            'is_editing' => true, // Setting is_editing to false for creation
+             ]);
+
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $event->setLastModifiedAt(new \DateTime());
+                $em->persist($event);
+                $em->flush();
+                return $this->redirectToRoute('accueil');
+            }
+            return $this->render('event/new.html.twig', [
+                'eventForm' => $form->createView(),
+            ]);
+            
         }
+        return $this->redirectToRoute('accueil');
 
-        $form = $this->createForm(EventFormType::class,$event);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $event->setLastModifiedAt(new \DateTime());
-            $em->persist($event);
-            $em->flush();
-
-            return $this->redirectToRoute('accueil'); // Change this to your desired route
-        }
-
-        return $this->render('event/modifyEvent.html.twig', [
-            'clubForm' => $form->createView(),
-        ]);
     }
-/*
-    #[Route('/club/delete/{id}', name: 'clubDelete')]
-    public function deleteClub(
+
+    #[Route('/event/delete/{id}', name: 'eventDelete')]
+    public function deleteEvent(
         Request $request,
-        ClubRepository $clubRepository,
+        EventRepository $eventRepository,
         EntityManagerInterface $em,
         $id,
         Security $security): Response
@@ -101,19 +112,23 @@ class EventController extends AbstractController
         //if (!$security->isGranted('ROLE_ADMIN')) {
         //    return $this->redirectToRoute('dashboard');
         //}
+        $user = $this->getUser();
+        if ($user instanceof User) {
 
-        $club = $clubRepository->find($id);
-
-        if (!$club) {
-            throw $this->createNotFoundException('Club not found');
+            $event = $eventRepository->find($id);
+            if (!$event) {
+                throw $this->createNotFoundException('Club not found');
+            }
+            // Penser à supprimer tous les events liés au club avant !!
+            // Penser à ajouter un flash
+            $em->remove($event);
+            $em->flush();
+            return $this->redirectToRoute('accueil');
         }
-        // Penser à supprimer tous les events liés au club avant !!
-        // Penser à ajouter un flash
-        $em->remove($club);
-        $em->flush();
 
         return $this->redirectToRoute('accueil');
 
     }
-    */
+
+
 }
