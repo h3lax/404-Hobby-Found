@@ -1,3 +1,49 @@
-body {
-    background-color: lightgray;
+/* General styles */
+html, body {
+    height: 100%;            /* Full height */
+    margin: 0;              /* Remove default margin */
+    background-color: lightgray; /* Background color */
+    font-family: Arial, sans-serif; /* Font family */
+    display: flex;           /* Use flexbox */
+    flex-direction: column;  /* Stack children vertically */
+}
+
+/* Main content styles */
+main {
+    flex: 1;                /* Allow main content to grow */
+}
+
+/* Header styles */
+header {
+    background-color: #166eb1;  
+    color: white;              /* White text */
+    padding: 10px 20px;       /* Padding for spacing */
+}
+
+nav ul {
+    list-style: none;          /* Remove bullet points */
+    padding: 0;               /* Remove default padding */
+}
+
+nav ul li {
+    display: inline;           /* Display list items inline */
+    margin-right: 15px;       /* Space between links */
+}
+
+nav ul li a {
+    color: white;             /* Link color */
+    text-decoration: none;    /* Remove underline */
+}
+
+nav ul li a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Footer styles */
+footer {
+    background-color: #166eb1; /* Dark background */
+    color: white;             /* White text */
+    text-align: center;       /* Centered text */
+    padding: 10px 0;         /* Padding for spacing */
+    width: 100%;              /* Full width */
 }

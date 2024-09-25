@@ -51,30 +51,65 @@ class __TwigTemplate_b680ca08de4bd77373b88371c5ae6aae extends Template
         // line 1
         yield "<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset=\"UTF-8\">
-        <title>";
+<head>
+    <meta charset=\"UTF-8\">
+    <title>";
         // line 5
         yield from $this->unwrap()->yieldBlock('title', $context, $blocks);
         yield "</title>
-        <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>\">
-        ";
-        // line 8
-        yield "        ";
+    <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>\">
+    ";
+        // line 7
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 11
-        yield "
-        ";
-        // line 12
+        // line 10
+        yield "    ";
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 15
-        yield "    </head>
-    <body>
-        ";
-        // line 17
-        yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
+        // line 13
+        yield "</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href=\"";
         // line 18
-        yield "    </body>
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("accueil");
+        yield "\">Home</a></li>
+                ";
+        // line 19
+        if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("IS_AUTHENTICATED_FULLY")) {
+            // line 20
+            yield "                    <li><a href=\"";
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
+            yield "\">Logout</a></li>
+                ";
+        } else {
+            // line 22
+            yield "                    <li><a href=\"";
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            yield "\">Login</a></li>
+                    <li><a href=\"";
+            // line 23
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
+            yield "\">Register</a></li>
+                ";
+        }
+        // line 25
+        yield "            </ul>
+        </nav>
+    </header>
+
+    ";
+        // line 29
+        yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
+        // line 30
+        yield "
+    <footer>
+        <p>&copy; ";
+        // line 32
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate("now", "Y"), "html", null, true);
+        yield " Your Website. All rights reserved.</p>
+    </footer>
+</body>
 </html>
 ";
         
@@ -109,7 +144,7 @@ class __TwigTemplate_b680ca08de4bd77373b88371c5ae6aae extends Template
         yield from [];
     }
 
-    // line 8
+    // line 7
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -122,11 +157,11 @@ class __TwigTemplate_b680ca08de4bd77373b88371c5ae6aae extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
-        // line 9
-        yield "            ";
+        // line 8
+        yield "        ";
         yield $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackLinkTags("app");
         yield "
-        ";
+    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -136,7 +171,7 @@ class __TwigTemplate_b680ca08de4bd77373b88371c5ae6aae extends Template
         yield from [];
     }
 
-    // line 12
+    // line 10
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -149,11 +184,11 @@ class __TwigTemplate_b680ca08de4bd77373b88371c5ae6aae extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 13
-        yield "            ";
+        // line 11
+        yield "        ";
         yield $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("app");
         yield "
-        ";
+    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -163,7 +198,7 @@ class __TwigTemplate_b680ca08de4bd77373b88371c5ae6aae extends Template
         yield from [];
     }
 
-    // line 17
+    // line 29
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -196,31 +231,55 @@ class __TwigTemplate_b680ca08de4bd77373b88371c5ae6aae extends Template
     /**
      * @codeCoverageIgnore
      */
+    public function isTraitable(): bool
+    {
+        return false;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
     public function getDebugInfo(): array
     {
-        return array (  167 => 17,  153 => 13,  140 => 12,  126 => 9,  113 => 8,  90 => 5,  77 => 18,  75 => 17,  71 => 15,  69 => 12,  66 => 11,  63 => 8,  58 => 5,  52 => 1,);
+        return array (  202 => 29,  188 => 11,  175 => 10,  161 => 8,  148 => 7,  125 => 5,  109 => 32,  105 => 30,  103 => 29,  97 => 25,  92 => 23,  87 => 22,  81 => 20,  79 => 19,  75 => 18,  68 => 13,  65 => 10,  63 => 7,  58 => 5,  52 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset=\"UTF-8\">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>\">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset=\"UTF-8\">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>\">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href=\"{{ path('accueil') }}\">Home</a></li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li><a href=\"{{ path('app_logout') }}\">Logout</a></li>
+                {% else %}
+                    <li><a href=\"{{ path('app_login') }}\">Login</a></li>
+                    <li><a href=\"{{ path('app_register') }}\">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block body %}{% endblock %}
+
+    <footer>
+        <p>&copy; {{ \"now\"|date(\"Y\") }} Your Website. All rights reserved.</p>
+    </footer>
+</body>
 </html>
 ", "base.html.twig", "C:\\laragon\\www\\404-Hobby-Found\\templates\\base.html.twig");
     }

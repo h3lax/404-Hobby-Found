@@ -21,5 +21,8 @@ return [
     'clubAdd' => [[], ['_controller' => 'App\\Controller\\EventController::addClub'], [], [['text', '/club/add']], [], [], []],
     'accueil' => [[], ['_controller' => 'App\\Controller\\LandingPageController::index'], [], [['text', '/']], [], [], []],
     'app_my_clubs' => [[], ['_controller' => 'App\\Controller\\MyClubsController::index'], [], [['text', '/club']], [], [], []],
+    'app_register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], [], []],
+    'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], [], []],
+    'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], [], []],
     'index' => [[], ['_controller' => 'App\\Controller\\LandingPageController::landingPage'], [], [['text', '/']], [], [], []],
 ];
