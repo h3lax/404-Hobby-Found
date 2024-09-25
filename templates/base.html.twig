@@ -6,30 +6,74 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
-    {% endblock %}
-    {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     {% endblock %}
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="{{ path('accueil') }}">Home</a></li>
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li><a href="{{ path('app_logout') }}">Logout</a></li>
-                {% else %}
-                    <li><a href="{{ path('app_login') }}">Login</a></li>
-                    <li><a href="{{ path('app_register') }}">Register</a></li>
-                {% endif %}
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                 <img src="{{ asset('img/logo.webp') }}" alt="Logo" class="logo-circle">
+            </a>
+            <div class="mx-auto text-center flex-grow-3">
+               <h1 class="h4 mb-0 navbar-text">T'as des hobbies? Nous aussi !</h1>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('accueil') }}">Home</a>
+                    </li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_my_clubs') }}">Mes Clubs</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_register') }}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
         </nav>
     </header>
 
-    {% block body %}{% endblock %}
+    <div class="content">  <!-- Added a content div -->
+        {% block body %}
+
+        {% if app.flashes('success') %}
+            <div class="alert alert-success">
+                {% for message in app.flashes('success') %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if app.flashes('error') %}
+            <div class="alert alert-danger">
+                {% for message in app.flashes('error') %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% endblock %}
+    </div>
 
     <footer>
-        <p>&copy; {{ "now"|date("Y") }} Your Website. All rights reserved.</p>
+        <p>&copy; {{ "now"|date("Y") }} 404 Hobby Found. All rights reserved.</p>
     </footer>
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% endblock %}
 </body>
 </html>
