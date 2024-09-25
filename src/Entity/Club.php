@@ -34,6 +34,10 @@ class Club
     #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'club')]
     private Collection $events;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'clubs')]
+    #[ORM\JoinTable(name: 'club_user')]
+    private Collection $users;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
@@ -129,6 +133,33 @@ class Club
             if ($event->getClub() === $this) {
                 $event->setClub(null);
             }
+        }
+
+        return $this;
+    }
+
+     /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addClub($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeClub($this);
         }
 
         return $this;

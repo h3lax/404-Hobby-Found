@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Repository\ClubRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +18,8 @@ class EventController extends AbstractController
     public function addClub(
         Request $request,
         EntityManagerInterface $em,
+        UserRepository $userRepository,
+        ClubRepository $clubRepository,
         Security $security): Response
     {
 
@@ -24,6 +28,9 @@ class EventController extends AbstractController
         //}
 
         $event = new Event();
+        $user = $userRepository->findBy(1);  //récupérer le user UNE FOIS QUON A LA CONNEXION
+        $club = $clubRepository->findClubsByUser($user);
+        
 
         /*
         $form = $this->createForm(ClubFormType::class,$club);

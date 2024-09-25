@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Club;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**
  * @extends ServiceEntityRepository<Club>
@@ -19,6 +21,19 @@ class ClubRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Club::class);
+
+    }
+
+    /**
+        * @return Club[] Returns an array of Club objects
+    */
+    public function findClubsByUser(User $user){
+        return $this->createQueryBuilder('c')
+            ->where('c.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
+
     }
 
 //    /**
