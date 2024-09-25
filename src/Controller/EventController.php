@@ -41,8 +41,9 @@ class EventController extends AbstractController
         return $this->render('clubs/addClub.html.twig', [
             'clubForm' => $form->createView(),
         ]);
+        */
     }
-
+/*
     #[Route('/club/modify/{id}', name: 'clubModify')]
     public function modifyClub(
         Request $request,
