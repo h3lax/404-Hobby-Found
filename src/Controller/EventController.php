@@ -130,5 +130,24 @@ class EventController extends AbstractController
 
     }
 
+        #[Route('/events', name: 'events')]
+    public function events(EventRepository $eventRepository): Response
+    {
+        $events = $eventRepository->findAll();
+
+        $eventData = [];
+        foreach ($events as $event) {
+            $eventData[] = [
+                'title' => $event->getTitle(),
+                'start' => $event->getDate()->format('Y-m-d\TH:i:s'),
+            ];
+        }
+
+        return $this->render('event/calendar.html.twig', [
+            'events' => json_encode($eventData),
+        ]);
+    }
+
+
 
 }
