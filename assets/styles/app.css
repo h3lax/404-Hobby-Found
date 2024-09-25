@@ -1,57 +1,95 @@
 /* General styles */
 html, body {
-    height: 100%;            /* Full height */
-    margin: 0;              /* Remove default margin */
+    height: 100%;                /* Full height */
+    margin: 0;                  /* Remove default margin */
     background-color: lightgray; /* Background color */
     font-family: Arial, sans-serif; /* Font family */
-    display: flex;           /* Use flexbox */
-    flex-direction: column;  /* Stack children vertically */
+    display: flex;               /* Use flexbox */
+    flex-direction: column;      /* Stack children vertically */
 }
 
 /* Main content styles */
-main {
-    flex: 1;                /* Allow main content to grow */
+.content {
+    flex: 1;                     /* Allow main content to grow */
 }
 
 /* Header styles */
 header {
-    background-color: #166eb1;  
-    color: white;              /* White text */
-    padding: 10px 20px;       /* Padding for spacing */
+    background-color: #1e7bc3;   /* Header background color */
+    color: white;                /* White text */
+    padding: 10px 20px;         /* Padding for spacing */
 }
 
 nav ul {
-    list-style: none;          /* Remove bullet points */
-    padding: 0;               /* Remove default padding */
+    list-style: none;            /* Remove bullet points */
+    padding: 0;                 /* Remove default padding */
 }
 
 nav ul li {
-    display: inline;           /* Display list items inline */
-    margin-right: 15px;       /* Space between links */
+    display: inline;             /* Display list items inline */
+    margin-right: 15px;         /* Space between links */
 }
 
 nav ul li a {
-    color: white;             /* Link color */
-    text-decoration: none;    /* Remove underline */
+    color: white;               /* Link color */
+    text-decoration: none;      /* Remove underline */
 }
 
 nav ul li a:hover {
-    text-decoration: underline; /* Underline on hover */
+    text-decoration: underline;  /* Underline on hover */
 }
 
 /* Footer styles */
 footer {
-    background-color: #166eb1; /* Dark background */
-    color: white;             /* White text */
-    text-align: center;       /* Centered text */
-    padding: 10px 0;         /* Padding for spacing */
-    width: 100%;              /* Full width */
+    background-color: #1e7bc3;   /* Dark background */
+    color: white;                /* White text */
+    text-align: center;          /* Centered text */
+    padding: 10px 0;            /* Padding for spacing */
+    width: 100%;                 /* Full width */
 }
 
+/* Logo styles */
 .logo-circle {
-    width: 40px;  /* Adjust size as needed */
-    height: 40px; /* Adjust size as needed */
-    border-radius: 50%; /* Makes the image circular */
-    object-fit: cover; /* Ensures the image covers the circular area */
-    border: 2px solid #000; /* Optional: adds a border */
+    width: 40px;                /* Adjust size as needed */
+    height: 40px;               /* Adjust size as needed */
+    border-radius: 50%;         /* Makes the image circular */
+    object-fit: cover;          /* Ensures the image covers the circular area */
+    border: 2px solid #000;     /* Optional: adds a border */
+}
+
+.navbar-text {
+    color: #1e7bc3; /* Set this to match your navbar links */
+}
+
+/* General styles for forms */
+.registration-form {
+    max-width: 400px; /* Set a max width for the form */
+    margin: auto; /* Center the form */
+    padding: 20px; /* Padding for spacing */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #fff; /* White background */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+h1 {
+    color: #166eb1; /* Match header color */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+.btn {
+    width: 100%; /* Full width button */
+}
+
+/* Additional styling for form control */
+.form-control {
+    border: 1px solid #166eb1; /* Match border color */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.form-check-input {
+    margin-top: 0.3rem; /* Align checkbox */
 }
