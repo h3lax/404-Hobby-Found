@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Form\EventFormType;
+use App\Repository\ClubRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,10 +15,12 @@ use Symfony\Component\Security\Core\Security;
 
 class EventController extends AbstractController
 {
-    #[Route('/club/add', name: 'clubAdd')]
-    public function addClub(
+    #[Route('/event/add', name: 'eventAdd')]
+    public function addEvent(
         Request $request,
         EntityManagerInterface $em,
+        UserRepository $userRepository,
+        ClubRepository $clubRepository,
         Security $security): Response
     {
 
@@ -24,24 +29,26 @@ class EventController extends AbstractController
         //}
 
         $event = new Event();
+        $user = $userRepository->find(1);  //récupérer le user UNE FOIS QUON A LA CONNEXION
+        $clubs = $user->getClubs();
 
-        /*
-        $form = $this->createForm(ClubFormType::class,$club);
+        $form = $this->createForm(EventFormType::class, $event, [
+            'clubs' => $clubs
+        ]);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $club->setCreatedAt(new \DateTimeImmutable());
-            $club->setLastModifiedAt(new \DateTimeImmutable());
-            $em->persist($club);
+            $em->persist($event);
             $em->flush();
 
-            return $this->redirectToRoute('accueil'); // Change this to your desired route
+            return $this->redirectToRoute('accueil');
         }
 
-        return $this->render('clubs/addClub.html.twig', [
-            'clubForm' => $form->createView(),
+        return $this->render('event/new.html.twig', [
+            'eventForm' => $form->createView(),
         ]);
-        */
+
     }
 /*
     #[Route('/club/modify/{id}', name: 'clubModify')]

@@ -25,10 +25,10 @@ class Event
     #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $createAt = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $lastModifiedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'events')]

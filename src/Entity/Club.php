@@ -25,14 +25,18 @@ class Club
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $clubImg = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $lastModifiedAt = null;
 
     #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'club')]
     private Collection $events;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'clubs')]
+    #[ORM\JoinTable(name: 'club_user')]
+    private Collection $users;
 
     public function __construct()
     {
@@ -129,6 +133,33 @@ class Club
             if ($event->getClub() === $this) {
                 $event->setClub(null);
             }
+        }
+
+        return $this;
+    }
+
+     /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addClub($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeClub($this);
         }
 
         return $this;
