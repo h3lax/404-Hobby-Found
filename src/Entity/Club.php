@@ -31,6 +31,9 @@ class Club
     #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $lastModifiedAt = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $socialLink = null; // New social link property
+
     #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'club')]
     private Collection $events;
 
@@ -79,9 +82,20 @@ class Club
 
     public function setclubImg(?string $img): static
     {
-        $this->clubImg = $img;  // Correctly assign the method parameter
+        $this->clubImg = $img;
         return $this;
-    }    
+    }
+
+    public function getSocialLink(): ?string
+    {
+        return $this->socialLink;
+    }
+
+    public function setSocialLink(?string $socialLink): static
+    {
+        $this->socialLink = $socialLink;
+        return $this;
+    }
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
@@ -137,7 +151,7 @@ class Club
         return $this;
     }
 
-     /**
+    /**
      * @return Collection<int, User>
      */
     public function getUsers(): Collection
@@ -163,5 +177,4 @@ class Club
 
         return $this;
     }
-
 }

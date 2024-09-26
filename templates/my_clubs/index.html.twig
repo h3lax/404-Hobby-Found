@@ -19,7 +19,18 @@
               alt="Club Picture" class="rounded-circle mb-3" width="100" height="100">
 
               <p class="card-text">{{ club.name }}</p>
-            
+
+              <!-- Display the social link if available -->
+              {% if club.socialLink %}
+                <p class="mt-2">
+                  <a href="{{ club.socialLink }}" target="_blank" class="btn btn-primary btn-sm">
+                    Visit Social Page
+                  </a>
+                </p>
+              {% else %}
+                <p class="text-muted">No social link available</p>
+              {% endif %}
+
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary view-description" data-description="{{ club.description }}" data-toggle="modal" data-target="#clubModal">View</button>

@@ -13,6 +13,7 @@ class ClubFormType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('socialLink')
             ->add('description')
             ->add('clubImg', FileType::class, [
                 'label' => 'Club Image',
