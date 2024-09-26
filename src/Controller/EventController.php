@@ -49,14 +49,20 @@ class EventController extends AbstractController
                 $event->setLastModifiedAt(new \DateTime());
                 $em->persist($event);
                 $em->flush();
+
+                $this->addFlash('success', 'Evènement créé!');
+
                 return $this->redirectToRoute('accueil');
             }
+            
             return $this->render('event/new.html.twig', [
                 'eventForm' => $form->createView(),
             ]);
             
         }
-        return $this->redirectToRoute('accueil');
+
+        $this->addFlash('error', 'vous devez vous connecter pour créer un évènement!');
+        return $this->redirectToRoute('app_login');
 
     }
 
@@ -89,6 +95,7 @@ class EventController extends AbstractController
                 $event->setLastModifiedAt(new \DateTime());
                 $em->persist($event);
                 $em->flush();
+                $this->addFlash('success', 'Evènement créé!');
                 return $this->redirectToRoute('accueil');
             }
             return $this->render('event/new.html.twig', [
@@ -96,7 +103,8 @@ class EventController extends AbstractController
             ]);
             
         }
-        return $this->redirectToRoute('accueil');
+        $this->addFlash('error', 'vous devez vous connecter pour modifier un évènement!');
+        return $this->redirectToRoute('app_login');
 
     }
 
@@ -123,10 +131,13 @@ class EventController extends AbstractController
             // Penser à ajouter un flash
             $em->remove($event);
             $em->flush();
+            $this->addFlash('error', 'Evènement supprimé!');
+
             return $this->redirectToRoute('accueil');
         }
 
-        return $this->redirectToRoute('accueil');
+        $this->addFlash('error', 'Vous devez vous connecter pour supprimer un event!');
+        return $this->redirectToRoute('app_login');
 
     }
 

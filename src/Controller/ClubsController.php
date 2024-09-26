@@ -7,6 +7,7 @@ use App\Form\ClubFormType;
 use App\Repository\ClubRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -60,6 +61,7 @@ class ClubsController extends AbstractController
         // Persist the new club entity to the database
         $em->persist($club);
         $em->flush();
+        $this->addFlash('success', 'Club créé!');
 
         // Redirect to the homepage (or your desired route)
         return $this->redirectToRoute('accueil');
@@ -133,11 +135,14 @@ public function modifyClub(
         //    return $this->redirectToRoute('dashboard');
         //}
 
-        $club = $clubRepository->find($id);
-
-        if (!$club) {
-            throw $this->createNotFoundException('Club not found');
-        }
+        
+            $club = $clubRepository->find($id);
+        
+            if (!$club) {
+                return $this->redirectToRoute('accueil');
+                $this->addFlash('error', 'Ce Club n\'existe pas');
+            }
+        
         // on supprime les events lies au club avant
         $clubEvents = $club->getEvents();
         foreach ($clubEvents as $event) {
@@ -147,6 +152,7 @@ public function modifyClub(
 
         $em->remove($club);
         $em->flush();
+        $this->addFlash('error', 'Vous avez bien supprimé ce club !');
 
         return $this->redirectToRoute('accueil');
 
