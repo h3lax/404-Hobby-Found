@@ -6,12 +6,24 @@
 <main role="main">
   <div class="album py-5">
     <div class="container">
+      
+      <!-- Add Create Club Button -->
+      {% if app.user %}
+      <div class="mb-4 text-center">
+          <a href="{{ path('clubAdd') }}" class="btn btn-primary">Créer ton club !</a>
+      </div>
+      {% endif %}
+
       <div class="row">
         {% for club in clubs %}
           {% if not club.users.contains(app.user) %}
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
               <div class="card-body">
+                <!-- Display the club image and align it to the right -->
+                <img src="{{ club.clubImg ? asset('uploads/clubs/' ~ club.clubImg) : asset('default/default.jpg') }}" 
+                     alt="Club Picture" class="rounded-circle float-end" width="40" height="40">
+
                 <p class="card-text">{{ club.name }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
@@ -19,12 +31,12 @@
                       <form action="{{ path('clubJoin', {'id': club.id}) }}" method="post" class="join-form" data-club-name="{{ club.name }}">
                         <button type="button" class="btn btn-sm btn-outline-secondary join-button me-2" data-toggle="modal" data-target="#joinClubModal">Join</button>
                       </form>
-                      <button type="button" class="btn btn-sm btn-outline-secondary view-description" data-description="{{ club.description }}" data-toggle="modal" data-target="#clubModal">View</button>
-                      {% else %}
-                        <button type="button" class="btn btn-sm btn-outline-secondary view-description" data-description="{{ club.description }}" data-toggle="modal" data-target="#clubModal">View</button>
-                      {% endif %}
-                    </div>
-                  
+                      <button type="button" class="btn btn-sm btn-outline-secondary view-description ms-2" data-description="{{ club.description }}" data-toggle="modal" data-target="#clubModal">View</button>
+                    {% else %}
+                      <button type="button" class="btn btn-sm btn-outline-secondary view-description ms-2" data-description="{{ club.description }}" data-toggle="modal" data-target="#clubModal">View</button>
+                    {% endif %}
+                  </div>
+                  <small class="text-muted">{{ club.users.count() }} Members</small>
                 </div>
               </div>
             </div>
@@ -78,7 +90,6 @@
         </div>
     </div>
 </div>
-
 
 </main>
 

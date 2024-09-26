@@ -34,7 +34,7 @@ class RegistrationController extends AbstractController
                 try {
                     // Move the file to the directory where images are stored
                     $file->move(
-                        $this->getParameter('uploads_directory'),
+                        $this->getParameter('general_uploads_directory'),
                         $filename
                     );
                     // Set the profile image path to the User entity

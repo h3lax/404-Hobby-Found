@@ -1,13 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Crée ton Club{% endblock %}
+{% block title %}Modifier le Club{% endblock %}
 
 {% block body %}
-    <h1>Crée ton Club</h1>
+<div class="container mt-5 mb-5"> <!-- Added mb-5 for bottom margin -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Modifier le Club</h5>
+                </div>
+                <div class="card-body">
+                    {{ form_start(clubForm) }}
+                    
+                    <!-- Render form fields inside the card -->
+                    <div class="mb-3">
+                        {{ form_row(clubForm.name, {'attr': {'class': 'form-control'}}) }}
+                    </div>
 
-    {{ form_start(clubForm) }}
-        {{ form_widget(clubForm) }}
-        <button class="btn btn-success">Save Changes</button>
-    {{ form_end(clubForm) }}
+                    <div class="mb-3">
+                        {{ form_row(clubForm.description, {'attr': {'class': 'form-control'}}) }}
+                    </div>
 
+                    <div class="mb-3">
+                        {{ form_row(clubForm.clubImg, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <button class="btn btn-lg btn-success" type="submit">
+                        Save Changes
+                    </button>
+                    {{ form_end(clubForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

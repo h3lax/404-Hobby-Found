@@ -6,7 +6,7 @@ use App\Entity\Club;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 class ClubFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -14,7 +14,12 @@ class ClubFormType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('clubImg')
+            ->add('clubImg', FileType::class, [
+                'label' => 'Club Image',
+                'required' => false,
+                'mapped' => false, // If it's not directly mapped to the database field
+            ]);
+            
         ;
     }
 

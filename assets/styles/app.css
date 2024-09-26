@@ -111,3 +111,9 @@ h1 {
     width: auto; /* Make buttons take their natural width */
     margin-left: 10px; /* Add space between buttons */
 }
+
+.club-img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover; /* Ensure the image fits within the container */
+}

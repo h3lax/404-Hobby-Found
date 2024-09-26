@@ -79,10 +79,9 @@ class Club
 
     public function setclubImg(?string $img): static
     {
-        $this->clubImg = $clubImg;
-
+        $this->clubImg = $img;  // Correctly assign the method parameter
         return $this;
-    }
+    }    
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
