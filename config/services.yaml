@@ -6,6 +6,7 @@
 parameters:
     general_uploads_directory: '%kernel.project_dir%/public/uploads'
     club_uploads_directory: '%kernel.project_dir%/public/uploads/clubs'
+    api_key: '%env(API_KEY)%'
 services:   
     # default configuration for services in *this* file
     _defaults:
