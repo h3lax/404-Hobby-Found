@@ -96,8 +96,13 @@ class ClubsController extends AbstractController
         if (!$club) {
             throw $this->createNotFoundException('Club not found');
         }
-        // Penser à supprimer tous les events liés au club avant !!
-        // Penser à ajouter un flash
+        // on supprime les events lies au club avant
+        $clubEvents = $club->getEvents();
+        foreach ($clubEvents as $event) {
+            $em->remove($event);
+        }
+        $em->flush();
+
         $em->remove($club);
         $em->flush();
 
