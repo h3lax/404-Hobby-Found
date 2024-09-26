@@ -5,8 +5,10 @@
 {% block body %}
 <main role="main">
 
-  <div class="album py-5">
+  <div class="album py-5 bg-light"> <!-- Album section with light background -->
     <div class="container">
+      <h1 class="text-center mb-5">My Clubs</h1> <!-- Title of the page -->
+
       <div class="row">
         {% for club in clubs %}
         <div class="col-md-4">
@@ -36,7 +38,7 @@
         </div>
         {% else %}
         <div class="col-12">
-          <p>You haven't joined any clubs yet.</p>
+          <p class="text-center text-muted">You haven't joined any clubs yet.</p>
         </div>
         {% endfor %}
       </div>    
@@ -54,7 +56,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <p id="clubDescription"></p>
+          <p id="clubDescription"></p> <!-- Content filled dynamically -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

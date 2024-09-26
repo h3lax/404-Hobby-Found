@@ -10,31 +10,47 @@ import '@fullcalendar/common/main.css';
 document.addEventListener('DOMContentLoaded', function() {
     const eventsDataElement = document.getElementById('events-data');
 
-    let event1 = {
-        title: 'Event1',
-        start: '2024-09-10'
-      };
-
     if (eventsDataElement) {
         try {
             console
             let events = JSON.parse(eventsDataElement.textContent);
-            let event2 = JSON.parse(events);
+            let eventsparsed = JSON.parse(events);
             let calendarEl = document.getElementById('calendar');
             let calendar = new Calendar(calendarEl, {
-                plugins: [dayGridPlugin], // Ensure you're using the right plugins
+                plugins: [dayGridPlugin],
                 initialView: 'dayGridMonth',
-                //events: events  // Pass the events array here directly
+                events : eventsparsed,
+                eventClick : function(info) {
+
+                    // Format the date in a user-friendly way
+                    let options = { 
+                        weekday: 'long', 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric', 
+                        hour: '2-digit', 
+                        minute: '2-digit', 
+                        hour12: true 
+                    };
+                    let formattedDate = new Intl.DateTimeFormat('fr-FR', options).format(info.event.start);
+                    console.log(formattedDate);
+
+                    // Populate modal with event details
+                    document.getElementById('modalTitle').innerText = info.event.title;
+                    document.getElementById('modalDescription').innerText = info.event.extendedProps.description;
+                    document.getElementById('modalDate').innerText = formattedDate;
+                    document.getElementById('modalClub').innerText = info.event.extendedProps.club;
+                    
+                    let modal = new bootstrap.Modal(document.getElementById('eventModal'));
+                    modal.show();
+                }
+
             });
-            console.log(events);
-            console.log(event1);
-            console.log(event2);
         
-            event2.forEach(event => {
-                console.log(event),
+           /* eventsparsed.forEach(event => {
+                console.log(event);
                 calendar.addEvent(event);
-            });
-            //calendar.addEvent( event1 );
+            });*/
 
             calendar.render();
         } catch (error) {

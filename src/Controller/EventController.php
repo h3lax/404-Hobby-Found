@@ -138,8 +138,11 @@ class EventController extends AbstractController
         $eventData = [];
         foreach ($events as $event) {
             $eventData[] = [
+                'id'=> $event->getId(),
                 'title' => $event->getTitle(),
                 'start' => $event->getDate()->format('Y-m-d\TH:i:s'),
+                'description' => $event->getDescription(),
+                'club' => $event->getClub()->getName(),
             ];
         }
 
