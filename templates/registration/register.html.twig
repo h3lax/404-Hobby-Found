@@ -3,32 +3,49 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-<div class="container mt-5 mb-5"> <!-- Added mb-5 for bottom margin -->
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card-body">
-                {{ form_errors(registrationForm) }}
+            <div class="card shadow-lg border-0 rounded-lg"> <!-- Card with shadow and rounded corners -->
+                <div class="card-body p-4">
+                    <h2 class="text-center mb-4">Inscription</h2> <!-- Improved heading style -->
+                    
+                    <!-- Display form errors if any -->
+                    {{ form_errors(registrationForm) }}
 
-                {{ form_start(registrationForm, {'attr': {'class': 'registration-form', 'enctype': 'multipart/form-data'}}) }}
-                    <div class="mb-3">
-                        {{ form_row(registrationForm.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form_row(registrationForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form_row(registrationForm.plainPassword, {
-                            label: 'Password',
-                            'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'}
-                        }) }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form_row(registrationForm.profile_img, {
-                            'attr': {'class': 'form-control', 'placeholder': 'Optional Image'}
-                        }) }}
-                    </div>
-                    <button type="submit" class="btn btn-primary">S'inscrire</button>
-                {{ form_end(registrationForm) }}
+                    <!-- Start form -->
+                    {{ form_start(registrationForm, {'attr': {'class': 'registration-form', 'enctype': 'multipart/form-data'}}) }}
+                    
+                        <!-- Nom field -->
+                        <div class="form-floating mb-3"> <!-- Floating label for a modern look -->
+                            {{ form_widget(registrationForm.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                            <label for="registrationForm_name">Nom</label>
+                        </div>
+
+                        <!-- Email field -->
+                        <div class="form-floating mb-3">
+                            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+                            <label for="registrationForm_email">Email</label>
+                        </div>
+
+                        <!-- Password field -->
+                        <div class="form-floating mb-3">
+                            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'}}) }}
+                            <label for="registrationForm_plainPassword">Mot de passe</label>
+                        </div>
+
+                        <!-- Image upload field -->
+                        <div class="mb-3">
+                            {{ form_row(registrationForm.profile_img, {'attr': {'class': 'form-control', 'placeholder': 'Image de profil (optionnel)'}}) }}
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">S'inscrire</button> <!-- Large primary button -->
+                        </div>
+
+                    {{ form_end(registrationForm) }}
+                </div>
             </div>
         </div>
     </div>
