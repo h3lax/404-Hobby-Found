@@ -31,6 +31,14 @@
                         {{ form_widget(clubForm.clubImg, {'attr': {'class': 'form-control-file'}}) }}
                     </div>
 
+                    <!-- Checkbox for generating profile image -->
+                    <div class="form-check mb-3 ml-1">
+                        {{ form_widget(clubForm.genererImg, {'attr': {'class': 'form-check-input'}}) }}
+                        <label class="form-check-label" for="clubForm_genererImg">
+                            Générer une image de profil
+                        </label>
+                    </div>
+
                     <!-- Social Link field with floating label -->
                     <div class="form-floating mb-3">
                         {{ form_widget(clubForm.socialLink, {'attr': {'class': 'form-control', 'placeholder': 'Lien social'}}) }}

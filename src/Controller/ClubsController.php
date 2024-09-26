@@ -54,6 +54,14 @@ class ClubsController extends AbstractController
             }
         }
 
+        //generer img?
+        $imgGen = false;
+        if ($form->get('genererImg')->getData()) {
+            // Perform the action for generating the image
+            $imgGen = true;
+            // e.g., calling another service or generating an image
+        }
+
         // Set additional properties for the club
         $club->setCreatedAt(new \DateTimeImmutable());
         $club->setLastModifiedAt(new \DateTimeImmutable());
@@ -62,6 +70,14 @@ class ClubsController extends AbstractController
         $em->persist($club);
         $em->flush();
         $this->addFlash('success', 'Club créé!');
+            
+        
+        // Check if the checkbox was checked
+        if ($imgGen) {
+
+            return $this->redirectToRoute('app_gpt', ['id' => $club->getId()]);
+        }
+        
 
         // Redirect to the homepage (or your desired route)
         return $this->redirectToRoute('accueil');

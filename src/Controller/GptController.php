@@ -21,19 +21,17 @@ class GptController extends AbstractController
 
     ): Response
     {
-
+    
         try {
             $club = $clubRepository->find($id);
             $msg = file_get_contents(__DIR__ . '/prompt.txt');
             $prompt = null;
-
             if ($club) {
 
                 $values = [
                     '{clubTitre}' => $club->getName()
                 ];
                 $prompt = strtr($msg, $values);
-
                 ////////////// A PARTIR DICI ON UTILISE LE MOTEUR DE GPT $$$$$$$$$$$$$$$$$$$$/////////////////////////////////////
 
                 // Clés d'API de ChatGPT
@@ -52,14 +50,12 @@ class GptController extends AbstractController
                 ]);
                 
                 $response->created;
-
                 $url = null;
 
                 foreach ($response->data as $data) {
                     $url = $data->url; // 'https://oaidalleapiprodscus.blob.core.windows.net/private/...'
                     $data->b64_json; // null
                 }
-
                 //////////////////////////////////////////////////////////////////////////
 
                 
@@ -71,6 +67,7 @@ class GptController extends AbstractController
                 $club->setclubImg($fileName);
                 $em->persist($club);
                 $em->flush();
+
 
             } else {
                 throw new \Exception('club null');
