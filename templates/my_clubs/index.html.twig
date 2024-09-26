@@ -2,21 +2,76 @@
 
 {% block title %}My Clubs{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        /* Ensure all cards are the same height */
+        .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-radius: 15px;
+        }
+
+        /* Ensure consistent height for card body */
+        .card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Center the image in the card */
+        .club-img-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Ensure images are always centered and uniform */
+        .club-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border-radius: 50%;
+        }
+
+        /* Button group should always be aligned */
+        .btn-group {
+            margin-top: 10px;
+        }
+
+        .card-footer {
+            text-align: center;
+        }
+
+        /* Set all cards to equal height, regardless of content */
+        .card-text {
+            min-height: 50px;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
 <main role="main">
-
-  <div class="album py-5 bg-light"> <!-- Album section with light background -->
+  <div class="album py-5 bg-light">
     <div class="container">
-      <h1 class="text-center mb-5">My Clubs</h1> <!-- Title of the page -->
+      <h1 class="text-center mb-5">Mes Clubs</h1> <!-- Title of the page -->
 
-      <div class="row">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {% for club in clubs %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <div class="card-body text-center"> <!-- Center the image -->
-              <!-- Display the club image -->
-              <img src="{{ club.clubImg ? asset('uploads/clubs/' ~ club.clubImg) : asset('default/default.jpg') }}" 
-              alt="Club Picture" class="rounded-circle mb-3" width="100" height="100">
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <!-- Display the club image inside a centered container -->
+              <div class="club-img-container">
+                <img src="{{ club.clubImg ? asset('uploads/clubs/' ~ club.clubImg) : asset('default/default.jpg') }}" 
+                alt="Club Picture" class="club-img">
+              </div>
 
               <p class="card-text">{{ club.name }}</p>
 
@@ -24,28 +79,24 @@
               {% if club.socialLink %}
                 <p class="mt-2">
                   <a href="{{ club.socialLink }}" target="_blank" class="btn btn-primary btn-sm">
-                    Visit Social Page
+                    Lien Réseau Social
                   </a>
                 </p>
               {% else %}
                 <p class="text-muted">No social link available</p>
               {% endif %}
-
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary view-description" data-description="{{ club.description }}" data-toggle="modal" data-target="#clubModal">View</button>
-                  
-                  <button type="button" class="btn btn-sm btn-outline-secondary ms-2" onclick="window.location.href='{{ path('clubModify', {'id': club.id}) }}'">Modifier</button>
-                  
-                  <button type="button" class="btn btn-sm btn-outline-secondary ms-2" onclick="window.location.href='{{ path('clubUnjoin', {'id': club.id}) }}'">Quitter</button>
-
-                  <form action="{{ path('clubDelete', {'id': club.id}) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this club?');" class="ms-2">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ club.id) }}">
-                    <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
-                  </form>
-                </div>
-                <small class="text-muted">{{ club.users.count() }} Members</small>
+              
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-primary ms-2" onclick="window.location.href='{{ path('clubModify', {'id': club.id}) }}'">Modifier</button>
+                <button type="button" class="btn btn-sm btn-outline-primary view-description ms-2" data-description="{{ club.description }}" data-toggle="modal" data-target="#clubModal">Info</button>
+                <button type="button" class="btn btn-sm btn-outline-primary ms-2 unjoin-button" data-club-id="{{ club.id }}" data-club-name="{{ club.name }}" data-toggle="modal" data-target="#unjoinClubModal">Quitter</button>
               </div>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">
+                {{ club.users.count() }} 
+                {{ club.users.count() == 1 ? 'Membre' : 'Membres' }}
+              </small>
             </div>
           </div>
         </div>
@@ -58,12 +109,12 @@
     </div>
   </div>
 
-  <!-- Modal -->
+  <!-- Club Description Modal -->
   <div class="modal fade" id="clubModal" tabindex="-1" role="dialog" aria-labelledby="clubModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="clubModalLabel">Club Description</h5>
+          <h5 class="modal-title" id="clubModalLabel">Description Du Club</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -72,28 +123,64 @@
           <p id="clubDescription"></p> <!-- Content filled dynamically -->
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unjoin Club Confirmation Modal -->
+  <div class="modal fade" id="unjoinClubModal" tabindex="-1" role="dialog" aria-labelledby="unjoinClubModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="unjoinClubModalLabel">Quitter le club</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="unjoinClubMessage">Voulez-vous vraiment quitter ce club ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Annuler</button>
+          <form id="confirmUnjoinForm" method="post" action="">
+            <button type="submit" class="btn btn-primary">Quitter</button>
+          </form>
         </div>
       </div>
     </div>
   </div>
 
 </main>
+{% endblock %}
 
 {% block javascripts %}
 {{ parent() }}
 <script>
-  // JavaScript to handle modal functionality
-  document.addEventListener('DOMContentLoaded', function () {
-    const viewButtons = document.querySelectorAll('.view-description');
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Club Description Modal
+    const viewButtons = document.querySelectorAll('.view-description');
     viewButtons.forEach(button => {
       button.addEventListener('click', function () {
         const description = this.getAttribute('data-description');
         document.getElementById('clubDescription').innerText = description;
       });
     });
-  });
+
+    // Unjoin Club Modal
+    const unjoinButtons = document.querySelectorAll('.unjoin-button');
+    unjoinButtons.forEach(button => {
+      button.addEventListener('click', function () {
+        const clubName = this.getAttribute('data-club-name');
+        const clubId = this.getAttribute('data-club-id');
+        document.getElementById('unjoinClubMessage').innerText = `Êtes-vous sûr de vouloir quitter le club "${clubName}" ?`;
+        const unjoinFormAction = "{{ path('clubUnjoin', {'id': 'CLUB_ID'}) }}".replace('CLUB_ID', clubId);
+        document.getElementById('confirmUnjoinForm').setAttribute('action', unjoinFormAction);
+      });
+    });
+});
+
 </script>
-{% endblock %}
 {% endblock %}

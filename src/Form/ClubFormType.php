@@ -16,7 +16,7 @@ class ClubFormType extends AbstractType
             ->add('socialLink')
             ->add('description')
             ->add('clubImg', FileType::class, [
-                'label' => 'Club Image',
+                'label' => 'Logo Club :',
                 'required' => false,
                 'mapped' => false, // If it's not directly mapped to the database field
             ]);
