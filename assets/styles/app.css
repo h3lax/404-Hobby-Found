@@ -1,119 +1,276 @@
-/* General styles */
+/* General Styles */
 html, body {
-    height: 100%;                /* Full height */
-    margin: 0;                  /* Remove default margin */
-    font-family: Arial, sans-serif; /* Font family */
-    display: flex;               /* Use flexbox */
-    flex-direction: column;      /* Stack children vertically */
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column; 
+    color: #333;
 }
 
-/* Main content styles */
+.container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
 .content {
-    flex: 1;                     /* Allow main content to grow */
+    flex: 1;
+    margin-top: 20px;
 }
 
-/* Header styles */
+/* Navbar Styles */
 header {
-    background-color: #1e7bc3;   /* Header background color */
-    color: white;                /* White text */
-    padding: 10px 20px;         /* Padding for spacing */
+    background-color: #1e7bc3;
+    color: white;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
-    list-style: none;            /* Remove bullet points */
-    padding: 0;                 /* Remove default padding */
-}
-
-nav ul li {
-    display: inline;             /* Display list items inline */
-    margin-right: 15px;         /* Space between links */
+    list-style: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 nav ul li a {
-    color: white;               /* Link color */
-    text-decoration: none;      /* Remove underline */
+    color: white;
+    background-color: #4a90e2;
+    padding: 8px 20px;
+    border-radius: 30px; /* Rounded corners for header buttons */
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 2px solid transparent;
 }
 
 nav ul li a:hover {
-    text-decoration: underline;  /* Underline on hover */
+    background-color: #0056b3;
+    color: white;
+    border: 2px solid white; /* White border on hover */
 }
 
-/* Footer styles */
-footer {
-    background-color: #1e7bc3;   /* Dark background */
-    color: white;                /* White text */
-    text-align: center;          /* Centered text */
-    padding: 10px 0;            /* Padding for spacing */
-    width: 100%;                 /* Full width */
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #007bff;
 }
 
-/* Logo styles */
-.logo-circle {
-    width: 40px;                /* Adjust size as needed */
-    height: 40px;               /* Adjust size as needed */
-    border-radius: 50%;         /* Makes the image circular */
-    object-fit: cover;          /* Ensures the image covers the circular area */
-    border: 2px solid #000;     /* Optional: adds a border */
+.navbar-toggler {
+    border: none;
 }
 
 .navbar-text {
-    color: #1e7bc3; /* Set this to match your navbar links */
+    font-size: 1.2rem;
+    color: #fff;
 }
 
-/* General styles for forms */
-.registration-form {
-    max-width: 400px; /* Set a max width for the form */
-    margin: auto; /* Center the form */
-    padding: 20px; /* Padding for spacing */
-    border: 1px solid #ccc; /* Light border */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #fff; /* White background */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+/* Logo and Profile Pic Styles */
+.logo-circle, .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 15px;
+    border: 2px solid #fff;
 }
 
-h1 {
-    color: #166eb1; /* Match header color */
+/* Card Customization */
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
 }
 
-.form-group {
-    margin-bottom: 15px; /* Space between form groups */
+.card-body {
+    padding: 40px; /* Generous padding inside the card */
 }
 
-.btn {
-    width: 100%; /* Full width button */
+.card-custom {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
 }
 
-/* Additional styling for form control */
-.form-control {
-    border: 1px solid #166eb1; /* Match border color */
-    border-radius: 5px; /* Rounded corners */
+.card-custom:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.form-check-input {
-    margin-top: 0.3rem; /* Align checkbox */
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 200px;
+    object-fit: cover;
 }
 
-.profile-pic {
-    width: 40px; /* Adjust size as needed */
-    height: 40px; /* Adjust size as needed */
-    border-radius: 50%; /* Makes it circular */
-    margin-left: 15px; /* Space between nav items and profile picture */
-    object-fit: cover; /* Ensures the image covers the element without distortion */
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #333;
 }
 
-.modal-footer {
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-between; /* Space between buttons */
-    align-items: center; /* Align items vertically */
-}
-
-.modal-footer .btn {
-    width: auto; /* Make buttons take their natural width */
-    margin-left: 10px; /* Add space between buttons */
+.card-text {
+    font-size: 1rem;
+    color: #555;
 }
 
 .club-img {
     width: 300px;
     height: 200px;
-    object-fit: cover; /* Ensure the image fits within the container */
+    object-fit: cover;
+}
+
+/* Form Styling */
+.registration-form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-floating {
+    position: relative;
+}
+
+.form-floating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    transition: 0.2s ease all;
+    font-size: 0.875rem; /* Smaller font for labels */
+    color: #666;
+}
+
+.form-floating .form-control {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.form-floating input:focus + label, 
+.form-floating input:not(:placeholder-shown) + label {
+    top: -12px;
+    left: 5px;
+    font-size: 0.75rem;
+    color: #1e7bc3; /* Highlighted color when focused */
+}
+
+.form-control {
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #1e7bc3; /* Highlight border when focused */
+    box-shadow: 0 0 8px rgba(30, 123, 195, 0.2);
+}
+
+.form-check-input {
+    margin-top: 0.3rem;
+}
+
+.form-control-file {
+    padding: 10px 0;
+}
+
+.mb-3 {
+    margin-bottom: 1.5rem; /* Add space between form groups */
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #1e7bc3;
+    border-color: #1e7bc3;
+    padding: 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #166eb1;
+    box-shadow: 0 4px 12px rgba(22, 110, 177, 0.2);
+}
+
+.btn-modern {
+    background-color: #007bff;
+    color: white;
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-size: 0.875rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-modern:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.d-grid {
+    display: grid;
+    gap: 10px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-footer .btn {
+    width: auto;
+    margin-left: 10px;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #1e7bc3;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 30px;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-body {
+        padding: 20px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
 }

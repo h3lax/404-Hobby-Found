@@ -7,20 +7,21 @@
   <div class="album py-5">
     <div class="container">
       
-      <!-- Add Create Club Button -->
+      <!-- Create Club Button -->
       {% if app.user %}
-      <div class="mb-4 text-center">
-          <a href="{{ path('clubAdd') }}" class="btn btn-primary">Créer ton club !</a>
-      </div>
+        <div class="mb-4 text-center">
+            <a href="{{ path('clubAdd') }}" class="btn btn-primary">Créer ton club !</a>
+        </div>
       {% endif %}
 
+      <!-- Club List -->
       <div class="row">
         {% for club in clubs %}
           {% if not club.users.contains(app.user) %}
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
               <div class="card-body">
-                <!-- Display the club image and align it to the right -->
+                <!-- Club image -->
                 <img src="{{ club.clubImg ? asset('uploads/clubs/' ~ club.clubImg) : asset('default/default.jpg') }}" 
                      alt="Club Picture" class="rounded-circle float-end" width="40" height="40">
 
@@ -29,21 +30,28 @@
                   <div class="btn-group">
                     {% if app.user %}
                       <form action="{{ path('clubJoin', {'id': club.id}) }}" method="post" class="join-form" data-club-name="{{ club.name }}">
-                        <button type="button" class="btn btn-sm btn-outline-secondary join-button me-2" data-toggle="modal" data-target="#joinClubModal">Join</button>
+                        <button type="button" class="btn btn-sm btn-outline-primary join-button me-2" data-toggle="modal" data-target="#joinClubModal">Rejoindre</button>
                       </form>
-                      <button type="button" class="btn btn-sm btn-outline-secondary view-description ms-2" data-description="{{ club.description }}" data-toggle="modal" data-target="#clubModal">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-primary view-description ms-2" data-description="{{ club.description }}" data-toggle="modal" data-target="#clubModal">Info</button>
                     {% else %}
-                      <button type="button" class="btn btn-sm btn-outline-secondary view-description ms-2" data-description="{{ club.description }}" data-toggle="modal" data-target="#clubModal">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-primary view-description ms-2" data-description="{{ club.description }}" data-toggle="modal" data-target="#clubModal">Info</button>
                     {% endif %}
                   </div>
-                  <small class="text-muted">{{ club.users.count() }} Members</small>
+
+                  {% if club.users.count() > 0 %}
+                     <small class="text-muted">{{ club.users.count() }} {{ club.users.count() == 1 ? 'Membre' : 'Membres' }}</small>
+                  {% else %}
+                     <small class="text-muted">0 Membre</small>
+
+                  {% endif %}
+
                 </div>
               </div>
             </div>
           </div>
           {% endif %}
         {% endfor %}
-      </div>    
+      </div>
     </div>
   </div>
 
@@ -52,7 +60,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="clubModalLabel">Club Description</h5>
+          <h5 class="modal-title" id="clubModalLabel">Description du club</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -61,7 +69,7 @@
           <p id="clubDescription"></p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
         </div>
       </div>
     </div>
@@ -72,7 +80,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="joinClubModalLabel">Join Club Confirmation</h5>
+                <h5 class="modal-title" id="joinClubModalLabel">Confirmation d'adhésion</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -81,16 +89,14 @@
                 <p id="joinClubMessage"></p>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <form id="confirmJoinForm" action="" method="post">
-                <button type="submit" class="btn btn-primary">Confirm</button>
-            </form>
-        </div>
-
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Annuler</button>
+                <form id="confirmJoinForm" action="" method="post">
+                    <button type="submit" class="btn btn-primary">Confirmer</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
+  </div>
 </main>
 
 {% block javascripts %}
@@ -112,7 +118,7 @@
     joinButtons.forEach(button => {
       button.addEventListener('click', function () {
         const clubName = this.closest('.join-form').getAttribute('data-club-name');
-        document.getElementById('joinClubMessage').innerText = `Are you sure you want to join the club "${clubName}"?`;
+        document.getElementById('joinClubMessage').innerText = `Êtes-vous sûr de vouloir rejoindre le club "${clubName}" ?`;
         const formAction = this.closest('.join-form').getAttribute('action');
         document.getElementById('confirmJoinForm').setAttribute('action', formAction);
       });

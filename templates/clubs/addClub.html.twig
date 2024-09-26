@@ -3,29 +3,46 @@
 {% block title %}Crée ton Club{% endblock %}
 
 {% block body %}
-<div class="container mt-5 mb-5"> <!-- Added mb-5 for bottom margin -->
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-0">Crée ton Club</h5>
-                </div>
-                <div class="card-body">
-                    {{ form_start(clubForm) }}
-                        <div class="mb-3">
-                            {{ form_row(clubForm.name, {'attr': {'class': 'form-control'}}) }}
-                        </div>
-                        <div class="mb-3">
-                            {{ form_row(clubForm.description, {'attr': {'class': 'form-control'}}) }}
-                        </div>
-                        <div class="mb-3">
-                            {{ form_row(clubForm.clubImg, {'attr': {'class': 'form-control'}}) }}
-                        </div>
-                        <div class="mb-3">
-                            {{ form_row(clubForm.socialLink, {'attr': {'class': 'form-control'}}) }}
-                        </div>
-                        <button class="btn btn-lg btn-success mb-3" type="submit">Créer</button>
-                        <a class="btn btn-lg btn-danger" href="{{ path('accueil') }}" >Annuler</a>
+            <div class="card shadow-lg border-0 rounded-lg"> <!-- Card with shadow and rounded corners -->
+                <div class="card-body p-4">
+                    <h2 class="text-center mb-4">Crée ton Club</h2> <!-- Improved heading style -->
+
+                    <!-- Start the form -->
+                    {{ form_start(clubForm, {'attr': {'class': 'club-create-form', 'enctype': 'multipart/form-data'}}) }}
+                    
+                    <!-- Name field with floating label -->
+                    <div class="form-floating mb-3">
+                        {{ form_widget(clubForm.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom du club'}}) }}
+                        <label for="clubForm_name">Nom du club</label>
+                    </div>
+
+                    <!-- Description field with floating label -->
+                    <div class="form-floating mb-3">
+                        {{ form_widget(clubForm.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
+                        <label for="clubForm_description">Description</label>
+                    </div>
+
+                    <!-- Club Image field with label -->
+                    <div class="mb-3">
+                        <label for="clubForm_clubImg" class="form-label">Logo Club :</label>
+                        {{ form_widget(clubForm.clubImg, {'attr': {'class': 'form-control-file'}}) }}
+                    </div>
+
+                    <!-- Social Link field with floating label -->
+                    <div class="form-floating mb-3">
+                        {{ form_widget(clubForm.socialLink, {'attr': {'class': 'form-control', 'placeholder': 'Lien social'}}) }}
+                        <label for="clubForm_socialLink">Lien social (optionnel)</label>
+                    </div>
+
+                    <!-- Buttons for submit and cancel -->
+                    <div class="d-flex justify-content-center gap-2">
+                        <button class="btn btn-lg btn-primary" type="submit">Créer</button>
+                        <a class="btn btn-lg btn-primary" href="{{ path('accueil') }}">Annuler</a>
+                    </div>
+
                     {{ form_end(clubForm) }}
                 </div>
             </div>

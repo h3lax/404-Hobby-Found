@@ -3,35 +3,50 @@
 {% block title %}Crée ton Event{% endblock %}
 
 {% block body %}
-
 <div class="container mt-5 mb-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0">Crée ton Club</h5>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-lg"> <!-- Card with shadow and rounded corners -->
+                <div class="card-body p-4">
+                    <h2 class="text-center mb-4">Créer un évènement</h2> <!-- Improved heading style -->
+
+                    <!-- Start the form -->
+                    {{ form_start(eventForm, {'attr': {'class': 'event-create-form'}}) }}
+                    
+                    <!-- Title field with floating label -->
+                    <div class="form-floating mb-3">
+                        {{ form_widget(eventForm.title, {'attr': {'class': 'form-control', 'placeholder': 'Titre de l\'évènement'}}) }}
+                        <label for="eventForm_title">Titre de l'évènement</label>
                     </div>
-                    <div class="card-body">
-                        {{ form_start(eventForm) }}
-                            <div class="mb-3">
-                                {{ form_row(eventForm.title, {'attr': {'class': 'form-control'}}) }}
-                            </div>
-                            <div class="mb-3">
-                                {{ form_row(eventForm.description, {'attr': {'class': 'form-control'}}) }}
-                            </div>
-                            <div class="mb-3">
-                                {{ form_row(eventForm.date, {'attr': {'class': 'form-control'}}) }}
-                            </div>
-                            <div class="mb-3">
-                                {{ form_row(eventForm.club, {'attr': {'class': 'form-control'}}) }}
-                            </div>
-                            <button class="btn btn-lg btn-success mb-3" type="submit">Créer</button>
-                            <a class="btn btn-lg btn-danger" href="{{ path('accueil') }}" >Annuler</a>
-                        {{ form_end(eventForm) }}
+
+                    <!-- Description field with floating label -->
+                    <div class="form-floating mb-3">
+                        {{ form_widget(eventForm.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
+                        <label for="eventForm_description">Description</label>
                     </div>
+
+                    <!-- Date field -->
+                    <div class="mb-3">
+                        {{ form_row(eventForm.date, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <!-- Club field with floating label -->
+                    <div class="form-floating mb-3">
+                        {{ form_widget(eventForm.club, {'attr': {'class': 'form-control', 'placeholder': 'Club associé'}}) }}
+                        <label for="eventForm_club">Club associé</label>
+                    </div>
+
+                    <!-- Buttons for submit and cancel -->
+                    <div class="d-flex justify-content-center gap-2">
+                        <button class="btn btn-lg btn-primary" type="submit">Créer</button>
+                        <a class="btn btn-lg btn-primary" href="{{ path('accueil') }}">Annuler</a>
+                    </div>
+
+
+                    {{ form_end(eventForm) }}
                 </div>
             </div>
         </div>
+    </div>
 </div>
-
 {% endblock %}

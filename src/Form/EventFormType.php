@@ -36,7 +36,6 @@ class EventFormType extends AbstractType
                     'class' => Club::class,
                     'choices' => $options['clubs'],
                     'choice_label' => 'name',
-                    'placeholder' => 'Choose a club',
                 ]);
             }
         ;
