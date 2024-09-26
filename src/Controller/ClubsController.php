@@ -147,4 +147,43 @@ class ClubsController extends AbstractController
         // Redirect to the accueil (home) route
         return $this->redirectToRoute('accueil');
     }
+
+    #[Route('/club/unjoin/{id}', name: 'clubUnjoin')]
+    public function unjoinClub(
+        Request $request,
+        ClubRepository $clubRepository,
+        EntityManagerInterface $em,
+        $id,
+        Security $security
+    ): Response {
+        // Retrieve the currently logged-in user
+        $user = $this->getUser();
+
+        if ($user) {
+            // Find the club by its ID
+            $club = $clubRepository->find($id);
+
+            if (!$club) {
+                // Club not found, throw a 404 exception
+                throw $this->createNotFoundException('Club not found');
+            }
+            
+            // Add the user to the club
+            $club->removeUser($user);
+
+            // Persist changes to the database
+            $em->persist($club);
+            $em->flush();
+
+            // Optional: Add a flash message to notify the user
+            $this->addFlash('success', 'You have Unjoined the club!');
+        } else {
+            // Optionally handle the case where the user is not logged in
+            $this->addFlash('error', 'You need to be logged in to Unjoin a club.');
+        }
+
+        // Redirect to the accueil (home) route
+        return $this->redirectToRoute('accueil');
+    }
+
 }
