@@ -26,9 +26,10 @@
                         {{ form_row(clubForm.clubImg, {'attr': {'class': 'form-control'}}) }}
                     </div>
 
-                    <button class="btn btn-lg btn-success" type="submit">
-                        Save Changes
+                    <button class="btn btn-lg btn-success mb-3" type="submit">
+                        Modifier
                     </button>
+                    <a class="btn btn-lg btn-danger" href="{{ path('accueil') }}" >Annuler</a>
                     {{ form_end(clubForm) }}
                 </div>
             </div>

@@ -224,7 +224,7 @@ public function modifyClub(
         }
 
         // Redirect to the accueil (home) route
-        return $this->redirectToRoute('accueil');
+        return $this->redirectToRoute('app_my_clubs');
     }
 
 }

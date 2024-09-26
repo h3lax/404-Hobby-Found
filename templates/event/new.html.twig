@@ -3,11 +3,35 @@
 {% block title %}Crée ton Event{% endblock %}
 
 {% block body %}
-    <h1>Crée ton Event</h1>
 
-    {{ form_start(eventForm) }}
-        {{ form_widget(eventForm) }}
-        <button class="btn btn-success">Create</button>
-    {{ form_end(eventForm) }}
+<div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Crée ton Club</h5>
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(eventForm) }}
+                            <div class="mb-3">
+                                {{ form_row(eventForm.title, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(eventForm.description, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(eventForm.date, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(eventForm.club, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <button class="btn btn-lg btn-success mb-3" type="submit">Créer</button>
+                            <a class="btn btn-lg btn-danger" href="{{ path('accueil') }}" >Annuler</a>
+                        {{ form_end(eventForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
 
 {% endblock %}
