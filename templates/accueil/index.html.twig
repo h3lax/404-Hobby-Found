@@ -33,6 +33,12 @@
                         <button type="button" class="btn btn-sm btn-outline-primary join-button me-2" data-toggle="modal" data-target="#joinClubModal">Rejoindre</button>
                       </form>
                       <button type="button" class="btn btn-sm btn-outline-primary view-description ms-2" data-description="{{ club.description }}" data-toggle="modal" data-target="#clubModal">Info</button>
+                      
+                      <form action="{{ path('clubDelete', {'id': club.id}) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this club?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete_club') }}">
+                        <button class="btn btn-sm btn-outline-primary ms-2" type="submit">Delete</button>
+                       </form>
+                    
                     {% else %}
                       <button type="button" class="btn btn-sm btn-outline-primary view-description ms-2" data-description="{{ club.description }}" data-toggle="modal" data-target="#clubModal">Info</button>
                     {% endif %}
