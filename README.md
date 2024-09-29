@@ -1,5 +1,21 @@
 # 404 Hobby Found
 
+## Sommaire
+1. [Contexte](#contexte)
+2. [Présentation du projet](#présentation-du-projet)
+3. [Fonctionnalités](#fonctionnalités)
+4. [Captures d'écran](#captures-décran)
+5. [Installation](#installation)
+   1. [Prérequis](#prérequis)
+   2. [Étapes d'installation](#étapes-dinstallation)
+6. [Usage](#usage)
+   1. [Gestion des profils utilisateurs](#gestion-des-profils-utilisateurs)
+   2. [Création de clubs](#création-de-clubs)
+   3. [Gestion des événements](#gestion-des-événements)
+7. [Vidéo marketing & présentation technique](#vidéo-marketing--présentation-technique)
+8. [Technologies utilisées](#technologies-utilisées)
+9. [Contributeurs](#contributeurs)
+
 ## Contexte
 Projet finaliste sur le concours de workshop par équipes de l'EPSI Montpellier pour la rentrée 2024 en Bachelor. Pour réaliser ce projet, nous avons disposé de 4 jours pour constituer l'ensemble des éléments du cahier des charges, soit 3 jours et demi de développement. 
 
@@ -65,6 +81,7 @@ Bootstrap 5 : Framework CSS pour une interface responsive.<br>
 Open AI Api : Api de Dall-e pour la génération d'image par IA<br>
 MySQL : Base de données.<br>
 JavaScript (ES6) : Interaction dynamique avec FullCalendar.
+![Document Technique](workshop2425-b3g26-doctech.pdf)
 
 ## Contributeurs
 Garis SELLIER - infra, montage, dossiers<br>
