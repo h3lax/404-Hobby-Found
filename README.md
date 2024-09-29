@@ -13,6 +13,10 @@ Système de newsletter : Les utilisateurs peuvent s'inscrire pour recevoir les d
 Interface utilisateur moderne : Design intuitif basé sur Bootstrap pour une navigation fluide.
 
 ## Captures d'écran
+![Accueil](public/img/captures/accueil.png)<br>
+![Création de club](public/img/captures/Crea_club.png)<br>
+![Evenements](public/img/captures/Evenements.png)<br>
+![Mes clubs](public/img/captures/Mes_clubs.png)
 
 ## Installation
 ### Prérequis
