@@ -30,7 +30,7 @@ Interface utilisateur moderne : Design intuitif basé sur Bootstrap pour une nav
 
 ## Captures d'écran
 ![Accueil](public/img/captures/Accueil.PNG)<br>
-![Création de club](public/img/captures/Crea_club.png)<br>
+![Création de club](public/img/captures/Crea_club.PNG)<br>
 ![Evenements](public/img/captures/Evenements.png)<br>
 ![Mes clubs](public/img/captures/Mes_clubs.png)
 
