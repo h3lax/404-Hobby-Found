@@ -29,10 +29,14 @@ Système de newsletter : Les utilisateurs peuvent s'inscrire pour recevoir les d
 Interface utilisateur moderne : Design intuitif basé sur Bootstrap pour une navigation fluide.
 
 ## Captures d'écran
+Accueil:<br>
 ![Accueil](public/img/captures/Accueil.PNG)<br>
+Création de club : <br>
 ![Création de club](public/img/captures/Crea_club.PNG)<br>
-![Evenements](public/img/captures/Evenements.png)<br>
-![Mes clubs](public/img/captures/Mes_clubs.png)
+Evenements : <br>
+![Evenements](public/img/captures/Evenements.PNG)<br>
+Mes clubs :<br>
+![Mes clubs](public/img/captures/Mes_clubs.PNG)
 
 ## Installation
 ### Prérequis
@@ -42,7 +46,9 @@ Composer<br>
 MySQL ou tout autre SGBD compatible
 ### Étapes d'installation
 1. Cloner le repository : 
-```bash git clone https://github.com/votre-utilisateur/404-hobby-found.git```
+```bash
+git clone https://github.com/votre-utilisateur/404-hobby-found.git
+```
 2. Installer les dépendances :
 ```bash
 composer install
@@ -81,7 +87,8 @@ Bootstrap 5 : Framework CSS pour une interface responsive.<br>
 Open AI Api : Api de Dall-e pour la génération d'image par IA<br>
 MySQL : Base de données.<br>
 JavaScript (ES6) : Interaction dynamique avec FullCalendar.
-![Document Technique](workshop2425-b3g26-doctech.pdf)
+Document Technique répertoriant notre travail ici :
+![Document Technique](workshop2425-b3g26-doctech.PDF)
 
 ## Contributeurs
 Garis SELLIER - infra, montage, dossiers<br>
