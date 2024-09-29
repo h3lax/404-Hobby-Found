@@ -88,7 +88,7 @@ Open AI Api : Api de Dall-e pour la génération d'image par IA<br>
 MySQL : Base de données.<br>
 JavaScript (ES6) : Interaction dynamique avec FullCalendar.
 Document Technique répertoriant notre travail ici :
-![Document Technique](workshop2425-b3g26-doctech.PDF)
+![Document Technique](docs/workshop2425-b3g26-doctech.pdf)
 
 ## Contributeurs
 Garis SELLIER - infra, montage, dossiers<br>
